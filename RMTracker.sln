@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMTracker.WebUI", "RMTracker.WebUI\RMTracker.WebUI.csproj", "{A9A43A6C-D2A5-46EC-A0FD-5FA481D6636D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMTracker.WebUI.Tests", "RMTracker.WebUI.Tests\RMTracker.WebUI.Tests.csproj", "{20D56544-340D-49C4-982F-E7CCC4268587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMTracker.Core", "RMTracker.Core\RMTracker.Core.csproj", "{4E5539C0-CB36-4D46-B5C6-D65BA12A35F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMTracker.DataAccess.SQL", "RMTracker.DataAccess.SQL\RMTracker.DataAccess.SQL.csproj", "{A0981818-851D-40C2-8A0A-BC309A9047AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMTracker.DataAccess.InMemory", "RMTracker.DataAccess.InMemory\RMTracker.DataAccess.InMemory.csproj", "{06FCC72E-B68D-48C7-9EA0-612BE72CCAFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMTracker.Services", "RMTracker.Services\RMTracker.Services.csproj", "{90589A11-B8DB-4008-9B40-B248FB1A9344}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9A43A6C-D2A5-46EC-A0FD-5FA481D6636D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A43A6C-D2A5-46EC-A0FD-5FA481D6636D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A43A6C-D2A5-46EC-A0FD-5FA481D6636D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A43A6C-D2A5-46EC-A0FD-5FA481D6636D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20D56544-340D-49C4-982F-E7CCC4268587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20D56544-340D-49C4-982F-E7CCC4268587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20D56544-340D-49C4-982F-E7CCC4268587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20D56544-340D-49C4-982F-E7CCC4268587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5539C0-CB36-4D46-B5C6-D65BA12A35F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5539C0-CB36-4D46-B5C6-D65BA12A35F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5539C0-CB36-4D46-B5C6-D65BA12A35F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5539C0-CB36-4D46-B5C6-D65BA12A35F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0981818-851D-40C2-8A0A-BC309A9047AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0981818-851D-40C2-8A0A-BC309A9047AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0981818-851D-40C2-8A0A-BC309A9047AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0981818-851D-40C2-8A0A-BC309A9047AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06FCC72E-B68D-48C7-9EA0-612BE72CCAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06FCC72E-B68D-48C7-9EA0-612BE72CCAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06FCC72E-B68D-48C7-9EA0-612BE72CCAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06FCC72E-B68D-48C7-9EA0-612BE72CCAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90589A11-B8DB-4008-9B40-B248FB1A9344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90589A11-B8DB-4008-9B40-B248FB1A9344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90589A11-B8DB-4008-9B40-B248FB1A9344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90589A11-B8DB-4008-9B40-B248FB1A9344}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F09FDA6-818D-4CE5-BE37-26605E63A050}
+	EndGlobalSection
+EndGlobal
