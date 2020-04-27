@@ -12,25 +12,24 @@ namespace RMTracker.WebUI.Controllers
     public class SubC2BController : Controller
     {
         IRepository<User_Works> uwcontext;
-        IRepository<Sub_C2B> Sub_C2B_V;
+        IRepository<Sub_C2B> c2bcontext;
 
         public SubC2BController(IRepository<User_Works> userwcontext,IRepository<Sub_C2B> SubC2BContext)
         {
             uwcontext = userwcontext;
-            Sub_C2B_V = SubC2BContext;
+            c2bcontext = SubC2BContext;
         }
         // GET: UserWorks
         public ActionResult Index()
         {
-            List<Sub_C2B> subc2b = Sub_C2B_V.Collection().ToList();
+            List<Sub_C2B> subc2b = c2bcontext.Collection().ToList();
             return View(subc2b);
         }
 
         public ActionResult Create()
         {
-            
-
             RMC2BView viewModel = new RMC2BView();
+
             viewModel.Sub_C2B_V = new Sub_C2B();
             viewModel.User_Works_V = uwcontext.Collection();
             return View(viewModel);
@@ -47,8 +46,8 @@ namespace RMTracker.WebUI.Controllers
             }
             else
             {
-                Sub_C2B_V.Insert(subc2bs);
-                Sub_C2B_V.Commit();
+                c2bcontext.Insert(subc2bs);
+                c2bcontext.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -56,7 +55,7 @@ namespace RMTracker.WebUI.Controllers
 
         public ActionResult Details(string Id)
         {
-            Sub_C2B subc2bToView = Sub_C2B_V.Find(Id);
+            Sub_C2B subc2bToView = c2bcontext.Find(Id);
             if (subc2bToView == null)
             {
                 return HttpNotFound();
@@ -70,7 +69,7 @@ namespace RMTracker.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Sub_C2B subc2bToEdit = Sub_C2B_V.Find(Id);
+            Sub_C2B subc2bToEdit = c2bcontext.Find(Id);
             if (subc2bToEdit == null)
             {
                 return HttpNotFound();
@@ -81,9 +80,9 @@ namespace RMTracker.WebUI.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(User_Works userwork,Sub_C2B subc2b, string Id)
+        public ActionResult Edit(Sub_C2B subc2bs, string Id)
         {
-            Sub_C2B subc2bToEdit = Sub_C2B_V.Find(Id);
+            Sub_C2B subc2bToEdit = c2bcontext.Find(Id);
 
             if (subc2bToEdit == null)
             {
@@ -93,12 +92,13 @@ namespace RMTracker.WebUI.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(subc2bToEdit);
+                    return View(subc2bs);
                 }
-                subc2bToEdit.SubC2B = subc2b.SubC2B;
-                subc2bToEdit.OrderID_Lamination = subc2b.OrderID_Lamination;
+                subc2bToEdit.C2BNo = subc2bs.C2BNo;
+                subc2bToEdit.SubC2B = subc2bs.SubC2B;
+                subc2bToEdit.OrderID_Lamination = subc2bs.OrderID_Lamination;
 
-                Sub_C2B_V.Commit();
+                c2bcontext.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -106,7 +106,7 @@ namespace RMTracker.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Sub_C2B subc2bToDelete = Sub_C2B_V.Find(Id);
+            Sub_C2B subc2bToDelete = c2bcontext.Find(Id);
             if (subc2bToDelete == null)
             {
                 return HttpNotFound();
@@ -121,15 +121,15 @@ namespace RMTracker.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(User_Works userw, string Id)
         {
-            Sub_C2B subc2bToDelete = Sub_C2B_V.Find(Id);
+            Sub_C2B subc2bToDelete = c2bcontext.Find(Id);
             if (subc2bToDelete == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                Sub_C2B_V.Delete(Id);
-                Sub_C2B_V.Commit();
+                c2bcontext.Delete(Id);
+                c2bcontext.Commit();
                 return RedirectToAction("Index");
             }
         }

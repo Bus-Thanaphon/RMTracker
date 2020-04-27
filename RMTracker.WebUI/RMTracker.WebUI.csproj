@@ -372,6 +372,7 @@
     <Content Include="Views\Onhold\Index.cshtml" />
     <Content Include="Views\Onhold\Create.cshtml" />
     <Content Include="Views\SubC2B\Delete.cshtml" />
+    <Content Include="Views\SubC2B\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
