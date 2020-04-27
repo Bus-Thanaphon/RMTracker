@@ -53,9 +53,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\202004230221112_Initial.cs" />
-    <Compile Include="Migrations\202004230221112_Initial.designer.cs">
-      <DependentUpon>202004230221112_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202004230719324_db.cs" />
+    <Compile Include="Migrations\202004230719324_db.designer.cs">
+      <DependentUpon>202004230719324_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004250807206_db1.cs" />
+    <Compile Include="Migrations\202004250807206_db1.designer.cs">
+      <DependentUpon>202004250807206_db1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004250926271_db2.cs" />
+    <Compile Include="Migrations\202004250926271_db2.designer.cs">
+      <DependentUpon>202004250926271_db2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004250935016_db3.cs" />
+    <Compile Include="Migrations\202004250935016_db3.designer.cs">
+      <DependentUpon>202004250935016_db3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004250939002_db4.cs" />
+    <Compile Include="Migrations\202004250939002_db4.designer.cs">
+      <DependentUpon>202004250939002_db4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +88,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004230221112_Initial.resx">
-      <DependentUpon>202004230221112_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004230719324_db.resx">
+      <DependentUpon>202004230719324_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004250807206_db1.resx">
+      <DependentUpon>202004250807206_db1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004250926271_db2.resx">
+      <DependentUpon>202004250926271_db2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004250935016_db3.resx">
+      <DependentUpon>202004250935016_db3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004250939002_db4.resx">
+      <DependentUpon>202004250939002_db4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

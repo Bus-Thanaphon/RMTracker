@@ -5,16 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using RMTracker.Core.Models;
 using RMTracker.Core.Contracts;
+using RMTracker.Core.ViewModels;
 
 namespace RMTracker.WebUI.Controllers
 {
     public class UserWorksController : Controller
     {
         IRepository<User_Works> context;
+        IRepository<Sub_C2B> C2Bcontext;
 
-        public UserWorksController(IRepository<User_Works> UserWorksContext)
+        public UserWorksController(IRepository<User_Works> UserWorksContext, IRepository<Sub_C2B> C2BContext)
         {
             context = UserWorksContext;
+            C2Bcontext = C2BContext;
         }
         // GET: UserWorks
         public ActionResult Index()
@@ -42,6 +45,40 @@ namespace RMTracker.WebUI.Controllers
 
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult Createsubc2b(string Id)
+        {
+            User_Works viewc2bedit = context.Find(Id);
+            if (viewc2bedit == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                RMC2BView viewModel = new RMC2BView();
+                viewModel.Sub_C2B_V = new Sub_C2B();
+                return View(viewModel);
+            }
+            //RMC2BView viewModel = new RMC2BView();
+            //viewModel.Sub_C2B_V = new Sub_C2B();
+            //return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Createsubc2b(Sub_C2B subc2bs)
+        {
+            
+                if (!ModelState.IsValid)
+                {
+                    return View(subc2bs);
+                }
+
+                C2Bcontext.Insert(subc2bs);
+                TempData["dataformuser"] = subc2bs; 
+                //C2Bcontext.Commit();
+                
+                return RedirectToAction("Index", "SubC2B");
+            
         }
 
         public ActionResult Details(string Id)

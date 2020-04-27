@@ -47,6 +47,8 @@ namespace RMTracker.WebUI
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<User_Works>, SQLRepository<User_Works>>();
+            container.RegisterType<IRepository<Sub_C2B>, SQLRepository<Sub_C2B>>();
+            container.RegisterType<IRepository<On_Hold>, SQLRepository<On_Hold>>();
         }
     }
 }

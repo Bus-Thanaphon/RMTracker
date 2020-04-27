@@ -196,6 +196,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OnholdController.cs" />
+    <Compile Include="Controllers\SubC2BController.cs" />
     <Compile Include="Controllers\UserWorksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -365,6 +367,11 @@
     <Content Include="Views\UserWorks\Edit.cshtml" />
     <Content Include="Views\UserWorks\Delete.cshtml" />
     <Content Include="Views\UserWorks\Details.cshtml" />
+    <Content Include="Views\SubC2B\Create.cshtml" />
+    <Content Include="Views\SubC2B\Index.cshtml" />
+    <Content Include="Views\Onhold\Index.cshtml" />
+    <Content Include="Views\Onhold\Create.cshtml" />
+    <Content Include="Views\SubC2B\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

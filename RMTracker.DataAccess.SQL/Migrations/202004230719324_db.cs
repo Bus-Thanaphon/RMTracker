@@ -3,10 +3,21 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class db : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Sub_C2B",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        SubC2B = c.String(),
+                        OrderID_Lamination = c.String(),
+                        CreateAt = c.DateTimeOffset(nullable: false, precision: 7),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.User_Works",
                 c => new
@@ -28,6 +39,7 @@
         public override void Down()
         {
             DropTable("dbo.User_Works");
+            DropTable("dbo.Sub_C2B");
         }
     }
 }
