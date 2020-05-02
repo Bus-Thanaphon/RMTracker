@@ -17,13 +17,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ALLWORK", "Index", "UserWorks", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("ALLWORK", "Index", "UserWorks", new { area = "" }, new { @class = "navbar-brand" })*@
+                @*<a href='@Url.Action("Index", "UserWorks", new { area = "" })'>
+                   <img src="~/Content/Images/allworklogo.png" width="240" height="135" />
+                   <img src="~/Content/Images/allworklogo.png" width="120" height="68" />
+                </a>*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("List", "Index", "UserWorks")</li>*@
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <div style="margin: 0 auto; text-align: center">
+                    <a href='@Url.Action("Index", "UserWorks", new { area = "" })'>
+                        <img src="~/Content/Images/allworklogo_dark.png" width="240" height="135" />
+                    </a>
+                </div>
+                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>

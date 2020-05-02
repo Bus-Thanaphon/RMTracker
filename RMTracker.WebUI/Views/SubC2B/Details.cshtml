@@ -1,0 +1,106 @@
+﻿@model RMTracker.Core.Models.Sub_C2B
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sub_C2B</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C2BNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C2BNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubC2B)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubC2B)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.countno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.countno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID_Lamination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID_Lamination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID_Cut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID_Cut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID_EdgeBanding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID_EdgeBanding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID_Drill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID_Drill)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID_Packing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID_Packing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID_Pickup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID_Pickup)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.SubID }, null)
+</p>

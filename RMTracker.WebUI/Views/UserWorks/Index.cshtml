@@ -4,10 +4,10 @@
         ViewBag.Title = "Index";
     }
 
-    <h2>Order</h2>
+    <h2>ออเดอร์ทั้งหมด</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("สร้างงานใหม่", "Create")
     </p>
     <table class="table">
         <tr>
@@ -18,10 +18,10 @@
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubC2B)
+                @Html.DisplayNameFor(model => model.Customer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Job_Status)
+                @Html.DisplayNameFor(model => model.SubC2B)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order_Status)
@@ -30,8 +30,8 @@
                 @Html.DisplayNameFor(model => model.Comment)
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.Sub_C2B)
-                </th>*@
+            @Html.DisplayNameFor(model => model.Sub_C2B)
+        </th>*@
             <th></th>
         </tr>
 
@@ -45,10 +45,10 @@
             @Html.DisplayFor(modelItem => item.StartDate)
         </td>
         <td>
-            @Html.ActionLink(item.subindex.Count.ToString(), "Index", "SubC2B", new { id = item.Id }, null)
+            @Html.DisplayFor(modelItem => item.Customer)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Job_Status)
+            @Html.ActionLink(item.subindex.Count.ToString(), "Index", "SubC2B", new { id = item.Id }, null)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Order_Status)
@@ -63,10 +63,10 @@
             @item.subindex.Count()
         }*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Createc2b", "Create", "SubC2B", new { id = item.Id }, null) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("สร้างงานย่อย", "Create", "SubC2B", new { id = item.Id }, null) |
+            @Html.ActionLink("แก้ไข", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("รายละเอียด", "Details", new { id = item.Id }) |
+            @Html.ActionLink("ลบ", "Delete", new { id = item.Id })
         </td>
     </tr>
         }

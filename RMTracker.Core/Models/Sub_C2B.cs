@@ -12,7 +12,9 @@ namespace RMTracker.Core.Models
     public class Sub_C2B : BaseEntity
     {
         public string SubID { get; set; }
+        [DisplayName("หมายเลข C2B")]
         public string C2BNo { get; set; }
+        [DisplayName("หมายเลขงานย่อย")]
         public string SubC2B { get; set; }
         public int countno { get; set; }
         [DisplayName("Lamination")]

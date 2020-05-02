@@ -9,23 +9,25 @@ namespace RMTracker.Core.Models
 {
     public class User_Works : BaseEntity
     {
-        [DisplayName("C2B No.")]
+        [DisplayName("หมายเลขออเดอร์")]
         public string C2BNo { get; set; }
-
+        [DisplayName("วันที่เริ่ม")]
         public string StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
 
-        [DisplayName("C2B ย่อย")]
+        [DisplayName("จำนวนงานย่อย")]
         public int SubC2B { get; set; }
 
-        [DisplayName("Job Status")]
+        [DisplayName("สถานะงาน")]
         public string Job_Status { get; set; }
 
-        [DisplayName("Order Status")]
+        [DisplayName("สถานะออเดอร์")]
         public string Order_Status { get; set; }
 
-        [DisplayName("Comment")]
+        [DisplayName("คอมเม้นท์")]
         public string Comment { get; set; }
+        [DisplayName("ชื่อลูกค้า")]
+        public string Customer { get; set; }
 
         public List<Sub_C2B> subindex { get; set; }
         //public virtual ICollection<Sub_C2B> Sub_C2B { set; get; }

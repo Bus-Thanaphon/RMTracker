@@ -110,8 +110,7 @@ namespace RMTracker.WebUI.Controllers
                 userwToEdit.C2BNo = userw.C2BNo;
                 userwToEdit.EndDate = userw.EndDate;
                 userwToEdit.SubC2B = userw.SubC2B;
-                userwToEdit.Job_Status = userw.Job_Status;
-                userwToEdit.Order_Status = userw.Order_Status;
+                userwToEdit.Customer = userw.Customer;
                 userwToEdit.Comment = userw.Comment;
 
                 context.Commit();

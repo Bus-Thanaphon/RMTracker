@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>แก้ไข C2B ย่อย</h2>
 
 
 @using (Html.BeginForm())
@@ -58,7 +58,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", new { id = Model.SubID }, null)
 </div>
 
 @section Scripts {
