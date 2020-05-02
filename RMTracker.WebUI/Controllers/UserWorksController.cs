@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using RMTracker.Core.Models;
 using RMTracker.Core.Contracts;
 using RMTracker.Core.ViewModels;
+using System.Drawing;
 
 namespace RMTracker.WebUI.Controllers
 {
@@ -23,7 +24,24 @@ namespace RMTracker.WebUI.Controllers
         public ActionResult Index()
         {
             List<User_Works> userworks = context.Collection().ToList();
+            var userworksId = userworks.Select(o => o.C2BNo).ToList();
+
+            var subindex = C2Bcontext.Collection().Where(o => userworksId.Contains(o.C2BNo)).ToList();
+
+            foreach (var i in userworks) 
+            {
+                i.subindex = subindex.Where(o => o.C2BNo == i.C2BNo).ToList();
+            }
             return View(userworks);
+            //var viewmodel = new User_Works();
+            //foreach (var item in C2Bcontext.Collection().ToList())
+            //{
+            //    int id = Int32.Parse(item.C2BNo);
+
+            //    //SystemsCount 
+            //    int count = C2Bcontext.Collection().Where(x => Int32.Parse(x.C2BNo) == id).Count();
+            //    item.countno = count;
+            //}
         }
 
         public ActionResult Create()
@@ -45,40 +63,6 @@ namespace RMTracker.WebUI.Controllers
 
                 return RedirectToAction("Index");
             }
-        }
-
-        public ActionResult Createsubc2b(string Id)
-        {
-            User_Works viewc2bedit = context.Find(Id);
-            if (viewc2bedit == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                RMC2BView viewModel = new RMC2BView();
-                viewModel.Sub_C2B_V = new Sub_C2B();
-                return View(viewModel);
-            }
-            //RMC2BView viewModel = new RMC2BView();
-            //viewModel.Sub_C2B_V = new Sub_C2B();
-            //return View(viewModel);
-        }
-        [HttpPost]
-        public ActionResult Createsubc2b(Sub_C2B subc2bs)
-        {
-            
-                if (!ModelState.IsValid)
-                {
-                    return View(subc2bs);
-                }
-
-                C2Bcontext.Insert(subc2bs);
-                TempData["dataformuser"] = subc2bs; 
-                //C2Bcontext.Commit();
-                
-                return RedirectToAction("Index", "SubC2B");
-            
         }
 
         public ActionResult Details(string Id)
@@ -124,7 +108,7 @@ namespace RMTracker.WebUI.Controllers
                 }
                 userwToEdit.C2BNo = userw.C2BNo;
                 userwToEdit.EndDate = userw.EndDate;
-                userwToEdit.Current_Station = userw.Current_Station;
+                userwToEdit.SubC2B = userw.SubC2B;
                 userwToEdit.Job_Status = userw.Job_Status;
                 userwToEdit.Order_Status = userw.Order_Status;
                 userwToEdit.Comment = userw.Comment;

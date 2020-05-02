@@ -12,11 +12,11 @@ namespace RMTracker.Core.Models
         [DisplayName("C2B No.")]
         public string C2BNo { get; set; }
 
-        public DateTimeOffset StartDate { get; set; }
+        public string StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
 
-        [DisplayName("Current Station")]
-        public string Current_Station { get; set; }
+        [DisplayName("C2B ย่อย")]
+        public int SubC2B { get; set; }
 
         [DisplayName("Job Status")]
         public string Job_Status { get; set; }
@@ -27,9 +27,14 @@ namespace RMTracker.Core.Models
         [DisplayName("Comment")]
         public string Comment { get; set; }
 
+        public List<Sub_C2B> subindex { get; set; }
+        //public virtual ICollection<Sub_C2B> Sub_C2B { set; get; }
+
+
         public User_Works()
         {
-            this.StartDate = DateTime.Now;
+            this.StartDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm tt");
         }
+
     }
 }

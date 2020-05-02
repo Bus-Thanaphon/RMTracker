@@ -3,6 +3,7 @@ using RMTracker.Core.Models;
 using RMTracker.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,51 +12,96 @@ namespace RMTracker.WebUI.Controllers
 {
     public class SubC2BController : Controller
     {
-        IRepository<User_Works> uwcontext;
-        IRepository<Sub_C2B> c2bcontext;
+        IRepository<User_Works> Userworks;
+        IRepository<Sub_C2B> Subc2bs;
 
         public SubC2BController(IRepository<User_Works> userwcontext,IRepository<Sub_C2B> SubC2BContext)
         {
-            uwcontext = userwcontext;
-            c2bcontext = SubC2BContext;
+            Userworks = userwcontext;
+            Subc2bs = SubC2BContext;
         }
         // GET: UserWorks
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
-            List<Sub_C2B> subc2b = c2bcontext.Collection().ToList();
+            List<Sub_C2B> subc2b = Subc2bs.Collection().Where(o => o.SubID == Id).ToList();
             return View(subc2b);
+            //Sub_C2B Subindex = Subc2bs.Find(c2bId);
+            //var subindex = Subc2bs.Collection().Where(o => o.C2BNo =).Tol
+            //if (Subindex == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //else
+            //{
+            //  var c2bmodel = new C2BC
+            //  {
+            //      Subc2bs = Subc2bs.Collection().Where(o => o.C2BNo == c2bId).ToList()
+            //  };
+            //  //userwToEdit = Userworks.Collection().Select(u => u.C2BNo).ToList();
+            //  //var userworksId = subc2b.Select(o => o.C2BNo).ToList();
+
+            // // List<Sub_C2B> subc2b = Subc2bs.Collection().Where(o => o.C2BNo == c2bId).ToList();
+
+            ////subc2b[0].Id 
+            //  return View(c2bmodel);
+            //}
         }
 
-        public ActionResult Create()
+        public ActionResult Create(Sub_C2B subc2bc,string Id)
         {
-            RMC2BView viewModel = new RMC2BView();
+            User_Works userwToEdit = Userworks.Find(Id);
+            if (userwToEdit == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                RMC2BView viewModel = new RMC2BView();
 
-            viewModel.Sub_C2B_V = new Sub_C2B();
-            viewModel.User_Works_V = uwcontext.Collection();
-            return View(viewModel);
-
+                viewModel.Subc2bs = new Sub_C2B();
+                viewModel.Userwork = userwToEdit;
+                viewModel.Userworks = Userworks.Collection();
+                return View(viewModel);
+            }
             //Sub_C2B subC2B = new Sub_C2B();
             //return View(subC2B);
         }
         [HttpPost]
-        public ActionResult Create(Sub_C2B subc2bs)
+        public ActionResult Create(Sub_C2B subc2bs, User_Works userw, string Id)
         {
-            if (!ModelState.IsValid)
+            User_Works userwToEdit = Userworks.Find(Id);
+
+            if (userwToEdit == null)
             {
-                return View(subc2bs);
+                return HttpNotFound();
             }
             else
             {
-                c2bcontext.Insert(subc2bs);
-                c2bcontext.Commit();
+                if (!ModelState.IsValid)
+                {
+                    return View(subc2bs);
+                }
+                else
+                {
+                    Subc2bs.Insert(subc2bs);
+                    subc2bs.C2BNo = userwToEdit.C2BNo;
+                    subc2bs.SubID = userwToEdit.Id;
+                    subc2bs.OrderID_Lamination = "Wait";
+                    subc2bs.OrderID_Cut = "Wait";
+                    subc2bs.OrderID_EdgeBanding = "Wait";
+                    subc2bs.OrderID_Drill = "Wait";
+                    subc2bs.OrderID_Packing = "Wait";
+                    subc2bs.OrderID_Pickup = "Wait";
+                    Subc2bs.Commit();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index", "UserWorks");
+                }
             }
         }
 
         public ActionResult Details(string Id)
         {
-            Sub_C2B subc2bToView = c2bcontext.Find(Id);
+            Sub_C2B subc2bToView = Subc2bs.Find(Id);
             if (subc2bToView == null)
             {
                 return HttpNotFound();
@@ -69,7 +115,7 @@ namespace RMTracker.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Sub_C2B subc2bToEdit = c2bcontext.Find(Id);
+            Sub_C2B subc2bToEdit = Subc2bs.Find(Id);
             if (subc2bToEdit == null)
             {
                 return HttpNotFound();
@@ -82,7 +128,7 @@ namespace RMTracker.WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(Sub_C2B subc2bs, string Id)
         {
-            Sub_C2B subc2bToEdit = c2bcontext.Find(Id);
+            Sub_C2B subc2bToEdit = Subc2bs.Find(Id);
 
             if (subc2bToEdit == null)
             {
@@ -98,15 +144,15 @@ namespace RMTracker.WebUI.Controllers
                 subc2bToEdit.SubC2B = subc2bs.SubC2B;
                 subc2bToEdit.OrderID_Lamination = subc2bs.OrderID_Lamination;
 
-                c2bcontext.Commit();
+                Subc2bs.Commit();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = subc2bToEdit.SubID });
             }
         }
 
         public ActionResult Delete(string Id)
         {
-            Sub_C2B subc2bToDelete = c2bcontext.Find(Id);
+            Sub_C2B subc2bToDelete = Subc2bs.Find(Id);
             if (subc2bToDelete == null)
             {
                 return HttpNotFound();
@@ -121,15 +167,15 @@ namespace RMTracker.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(User_Works userw, string Id)
         {
-            Sub_C2B subc2bToDelete = c2bcontext.Find(Id);
+            Sub_C2B subc2bToDelete = Subc2bs.Find(Id);
             if (subc2bToDelete == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                c2bcontext.Delete(Id);
-                c2bcontext.Commit();
+                Subc2bs.Delete(Id);
+                Subc2bs.Commit();
                 return RedirectToAction("Index");
             }
         }

@@ -9,8 +9,9 @@ namespace RMTracker.Core.ViewModels
 {
     public class RMC2BView
     {
-        public Sub_C2B Sub_C2B_V { get; set; }
-        public IEnumerable<User_Works> User_Works_V { get; set; }
+        public Sub_C2B Subc2bs { get; set; }
+        public User_Works Userwork { get; set; }
+        public IEnumerable<User_Works> Userworks { get; set; }
         
     }
 }

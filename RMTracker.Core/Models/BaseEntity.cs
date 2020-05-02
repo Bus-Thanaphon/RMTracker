@@ -14,6 +14,7 @@ namespace RMTracker.Core.Models
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public DateTimeOffset CreateAt { get; set; }
+
         public BaseEntity()
         {
             this.Id = Guid.NewGuid().ToString();

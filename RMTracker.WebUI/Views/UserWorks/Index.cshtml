@@ -1,48 +1,43 @@
 ﻿@model IEnumerable<RMTracker.Core.Models.User_Works>
+@*@model2  IEnumerable<RMTracker.Core.Models.User_Works.>*@
+    @{
+        ViewBag.Title = "Index";
+    }
 
-@{
-    ViewBag.Title = "Index";
-}
+    <h2>Index</h2>
 
-<h2>Index</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.C2BNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubC2B)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job_Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Sub_C2B)
+                </th>*@
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+        @foreach (var item in Model)
+        {
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.C2BNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Current_Station)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Job_Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Order_Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.C2BNo)
         </td>
@@ -50,10 +45,7 @@
             @Html.DisplayFor(modelItem => item.StartDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Current_Station)
+            @Html.ActionLink(item.subindex.Count.ToString(), "Index", "SubC2B", new { id = item.Id }, null)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Job_Status)
@@ -64,6 +56,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Comment)
         </td>
+        @*@Html.ActionLink("SubC2B", "Index", "SubC2B", new { id = item.Id }, null)
+        @foreach (var a in item.subindex)
+        {
+            @Html.ActionLink(a.SubC2B, "Index", "SubC2B", new { id = item.Id }, null)
+            @item.subindex.Count()
+        }*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Createc2b", "Create", "SubC2B", new { id = item.Id }, null) |
@@ -71,6 +69,6 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
-}
+        }
 
-</table>
+    </table>

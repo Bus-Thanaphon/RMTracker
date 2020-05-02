@@ -42,6 +42,16 @@ namespace RMTracker.DataAccess.SQL
             return dbSet.Find(Id);
         }
 
+        //public T Find(string Id)
+        //{
+        //    return dbSet.Find(Sub_C2B);
+        //}
+
+        public T Findsubc2b(string subindex)
+        {
+            return dbSet.Find(subindex);
+        }
+
         public void Insert(T t)
         {
             dbSet.Add(t);

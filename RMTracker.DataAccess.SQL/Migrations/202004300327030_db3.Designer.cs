@@ -7,13 +7,13 @@ namespace RMTracker.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class db2 : IMigrationMetadata
+    public sealed partial class db3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(db2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(db3));
         
         string IMigrationMetadata.Id
         {
-            get { return "202004250926271_db2"; }
+            get { return "202004300327030_db3"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,7 +3,7 @@ using RMTracker.Core.Models;
 
 namespace RMTracker.Core.Contracts
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity 
     {
         IQueryable<T> Collection();
         void Commit();

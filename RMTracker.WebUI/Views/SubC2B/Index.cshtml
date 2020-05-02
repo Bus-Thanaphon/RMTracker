@@ -6,17 +6,12 @@
 
 <h2>Index</h2>
 
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Back to list", "Index", "UserWorks")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateAt)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.C2BNo)
         </th>
@@ -26,17 +21,26 @@
         <th>
             @Html.DisplayNameFor(model => model.OrderID_Lamination)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID_Cut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID_EdgeBanding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID_Drill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID_Packing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID_Pickup)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
 <tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreateAt)
-    </td>
     <td>
         @Html.DisplayFor(modelItem => item.C2BNo)
     </td>
@@ -45,6 +49,21 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.OrderID_Lamination)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderID_Cut)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderID_EdgeBanding)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderID_Drill)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderID_Packing)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderID_Pickup)
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
