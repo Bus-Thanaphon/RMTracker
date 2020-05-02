@@ -86,12 +86,12 @@ namespace RMTracker.WebUI.Controllers
                     Subc2bs.Insert(subc2bs);
                     subc2bs.C2BNo = userwToEdit.C2BNo;
                     subc2bs.SubID = userwToEdit.Id;
-                    subc2bs.OrderID_Lamination = "Wait";
-                    subc2bs.OrderID_Cut = "Wait";
-                    subc2bs.OrderID_EdgeBanding = "Wait";
-                    subc2bs.OrderID_Drill = "Wait";
-                    subc2bs.OrderID_Packing = "Wait";
-                    subc2bs.OrderID_Pickup = "Wait";
+                    subc2bs.OrderID_Lamination = "In queue";
+                    subc2bs.OrderID_Cut = "Wait 1";
+                    subc2bs.OrderID_EdgeBanding = "Wait 2";
+                    subc2bs.OrderID_Drill = "Wait 3";
+                    subc2bs.OrderID_Packing = "Wait 4";
+                    subc2bs.OrderID_Pickup = "Wait 5";
                     Subc2bs.Commit();
 
                     return RedirectToAction("Index", "UserWorks");
@@ -176,7 +176,7 @@ namespace RMTracker.WebUI.Controllers
             {
                 Subc2bs.Delete(Id);
                 Subc2bs.Commit();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = subc2bToDelete.SubID });
             }
         }
     }
