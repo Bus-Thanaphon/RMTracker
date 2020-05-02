@@ -13,7 +13,7 @@ namespace RMTracker.DataAccess.SQL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004290226089_db1"; }
+            get { return "202005020253448_db1"; }
         }
         
         string IMigrationMetadata.Source

@@ -20,5 +20,6 @@ namespace RMTracker.DataAccess.SQL
         public DbSet<User_Works> Userworks { get; set; }
         public DbSet<Sub_C2B> Subc2bs { get; set; }
         public DbSet<On_Hold> Onhold { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

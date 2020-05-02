@@ -49,6 +49,7 @@ namespace RMTracker.WebUI
             container.RegisterType<IRepository<User_Works>, SQLRepository<User_Works>>();
             container.RegisterType<IRepository<Sub_C2B>, SQLRepository<Sub_C2B>>();
             container.RegisterType<IRepository<On_Hold>, SQLRepository<On_Hold>>();
+            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
         }
     }
 }

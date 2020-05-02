@@ -57,33 +57,9 @@
     <Compile Include="Migrations\202004230719324_db.designer.cs">
       <DependentUpon>202004230719324_db.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004290226089_db1.cs" />
-    <Compile Include="Migrations\202004290226089_db1.designer.cs">
-      <DependentUpon>202004290226089_db1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004290649176_db2.cs" />
-    <Compile Include="Migrations\202004290649176_db2.designer.cs">
-      <DependentUpon>202004290649176_db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004300327030_db3.cs" />
-    <Compile Include="Migrations\202004300327030_db3.designer.cs">
-      <DependentUpon>202004300327030_db3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004300336015_db4.cs" />
-    <Compile Include="Migrations\202004300336015_db4.designer.cs">
-      <DependentUpon>202004300336015_db4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004300633321_db5.cs" />
-    <Compile Include="Migrations\202004300633321_db5.designer.cs">
-      <DependentUpon>202004300633321_db5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004300925154_db6.cs" />
-    <Compile Include="Migrations\202004300925154_db6.designer.cs">
-      <DependentUpon>202004300925154_db6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005020232493_db7.cs" />
-    <Compile Include="Migrations\202005020232493_db7.designer.cs">
-      <DependentUpon>202005020232493_db7.cs</DependentUpon>
+    <Compile Include="Migrations\202005020253448_db1.cs" />
+    <Compile Include="Migrations\202005020253448_db1.designer.cs">
+      <DependentUpon>202005020253448_db1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,26 +79,8 @@
     <EmbeddedResource Include="Migrations\202004230719324_db.resx">
       <DependentUpon>202004230719324_db.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004290226089_db1.resx">
-      <DependentUpon>202004290226089_db1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004290649176_db2.resx">
-      <DependentUpon>202004290649176_db2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004300327030_db3.resx">
-      <DependentUpon>202004300327030_db3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004300336015_db4.resx">
-      <DependentUpon>202004300336015_db4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004300633321_db5.resx">
-      <DependentUpon>202004300633321_db5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004300925154_db6.resx">
-      <DependentUpon>202004300925154_db6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005020232493_db7.resx">
-      <DependentUpon>202005020232493_db7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005020253448_db1.resx">
+      <DependentUpon>202005020253448_db1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

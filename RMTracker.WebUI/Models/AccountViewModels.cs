@@ -79,6 +79,15 @@ namespace RMTracker.WebUI.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string NameUser { get; set; }
+        [Required]
+        public string Permission { get; set; }
+        [Required]
+        public string Position { get; set; }
+        [Required]
+        public string Department { get; set; }
     }
 
     public class ResetPasswordViewModel
