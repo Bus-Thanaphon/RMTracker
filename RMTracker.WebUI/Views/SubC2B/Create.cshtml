@@ -14,13 +14,13 @@
     <h4>Sub_C2B</h4>
     <hr />
     @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Subc2bs.SubID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Subc2bs.SubID, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.Id) } })
-            @Html.ValidationMessageFor(model => model.Subc2bs.C2BNo, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subc2bs.SubID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subc2bs.SubID, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.Id) } })
+                @Html.ValidationMessageFor(model => model.Subc2bs.C2BNo, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
     @*<div class="form-group">
             @Html.LabelFor(model => model.Subc2bs.C2BNo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -38,8 +38,26 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Subc2bs.SubC2B, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Subc2bs.SubC2B, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.C2BNo) + "/ " } })
+            @Html.EditorFor(model => model.Subc2bs.SubC2B, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.C2BNo) + " /" } })
             @Html.ValidationMessageFor(model => model.Subc2bs.SubC2B, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Select Station", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Lamination)
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Cut)
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_EdgeBanding)
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Drill)
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Packing)
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Pickup)
         </div>
     </div>
 

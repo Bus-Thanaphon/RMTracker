@@ -15,17 +15,17 @@ namespace RMTracker.Core.Models
         public string C2BNo { get; set; }
         public string SubC2B { get; set; }
         public int countno { get; set; }
-        [DisplayName("Station 1")]
+        [DisplayName("Lamination")]
         public string OrderID_Lamination { get; set; }
-        [DisplayName("Station 2")]
+        [DisplayName("Cut")]
         public string OrderID_Cut { get; set; }
-        [DisplayName("Station 3")]
+        [DisplayName("EdgeBanding")]
         public string OrderID_EdgeBanding { get; set; }
-        [DisplayName("Station 4")]
+        [DisplayName("Drill")]
         public string OrderID_Drill { get; set; }
-        [DisplayName("Station 5")]
+        [DisplayName("Packing")]
         public string OrderID_Packing { get; set; }
-        [DisplayName("Station 6")]
+        [DisplayName("Pickup")]
         public string OrderID_Pickup { get; set; }
 
     }

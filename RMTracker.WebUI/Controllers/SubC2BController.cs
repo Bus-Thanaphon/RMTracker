@@ -88,10 +88,10 @@ namespace RMTracker.WebUI.Controllers
                     subc2bs.SubID = userwToEdit.Id;
                     subc2bs.OrderID_Lamination = "In queue";
                     subc2bs.OrderID_Cut = "Wait 1";
-                    subc2bs.OrderID_EdgeBanding = "Wait 2";
-                    subc2bs.OrderID_Drill = "Wait 3";
-                    subc2bs.OrderID_Packing = "Wait 4";
-                    subc2bs.OrderID_Pickup = "Wait 5";
+                    subc2bs.OrderID_EdgeBanding = "Wait 1";
+                    subc2bs.OrderID_Drill = "Wait 1";
+                    subc2bs.OrderID_Packing = "Wait 1";
+                    subc2bs.OrderID_Pickup = "Wait 1";
                     Subc2bs.Commit();
 
                     return RedirectToAction("Index", "UserWorks");

@@ -59,6 +59,7 @@ namespace RMTracker.WebUI.Controllers
             else
             {
                 context.Insert(userw);
+                userw.Order_Status = "In queue";
                 context.Commit();
 
                 return RedirectToAction("Index");
