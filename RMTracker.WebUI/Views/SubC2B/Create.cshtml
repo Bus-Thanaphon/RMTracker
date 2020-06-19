@@ -2,77 +2,283 @@
 @{
     ViewBag.Title = "Create";
 }
+@Styles.Render("~/Content/Main.css")
 
-<h2>สร้าง C2B ย่อย</h2>
+<h2>สร้างงานย่อย</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    
-    <hr />
-    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <head>
+        <script src="jquery-3.5.1.min.js"></script>
+    </head>
+
+    <div class="form-horizontal">
+
+        <hr />
         <div class="form-group">
-            @Html.LabelFor(model => model.Subc2bs.SubID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subc2bs.SubID, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.Id) } })
-                @Html.ValidationMessageFor(model => model.Subc2bs.C2BNo, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-    @*<div class="form-group">
             @Html.LabelFor(model => model.Subc2bs.C2BNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Subc2bs.C2BNo, new SelectList(Model.Userworks, "C2BNo", "C2BNo"))
+            <div class="col-md-10 form-control-static">
+                @Html.DisplayFor(model => model.Userwork.C2BNo)
             </div>
-        </div>*@
-    <div class="form-group">
-        @Html.LabelFor(model => model.Subc2bs.C2BNo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Subc2bs.C2BNo, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.C2BNo), disabled = "disabled", @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.Subc2bs.C2BNo, "", new { @class = "text-danger" })
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Subc2bs.SubC2B, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Subc2bs.SubC2B, new { htmlAttributes = new { @class = "form-control", @Value = @Html.DisplayFor(model => model.Userwork.C2BNo) + " /" } })
-            @Html.ValidationMessageFor(model => model.Subc2bs.SubC2B, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subc2bs.SubC2B, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table style="width:27%">
+                    <tr>
+                        <td class="form-control-static" style="text-align:left;">@Html.DisplayFor(model => model.Userwork.C2BNo)@Html.Label("-")</td>
+                        @*<td class="form-control-static" style="text-align:center;">@Html.Label(" /")</td>*@
+                        <td style="text-align:right;">@Html.EditorFor(model => model.Subc2bs.SubC2B, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "number", style = "width:70px" } })</td>
+                        <td class="form-control-static" style="text-align:left;">@Html.Label("/")</td>
+                        <td style="text-align:right;">@Html.EditorFor(model => model.Subc2bs.SubC2B2, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", type = "number", style = "width:70px" } })</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.Subc2bs.SubC2B, "", new { @class = "text-danger" })
+                </table>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.Label("Select Station", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Lamination)
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Cut)
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_EdgeBanding)
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Drill)
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Packing)
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-            @Html.DisplayNameFor(model => model.Subc2bs.OrderID_Pickup)
+        <div class="form-group">
+            @Html.LabelFor(model => model.SLaminations.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxLamination, new { id = "clami" })<div class="slider round"></div></label></td>
+                        <td style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td style="text-align:center;">@Html.EditorFor(model => model.SLaminations.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tlami", @class = "form-control", style = "width:70px", autocomplete = "off" } })</td>
+                        <td style="text-align:left;">@Html.Label("หน้า")</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SLaminations.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.SCuts.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td  style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxCut, new { id = "ccut" })<div class="slider round"></div></label></td>
+                        <td  style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td  style="text-align:center;">@Html.EditorFor(model => model.SCuts.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tcut", @class = "form-control", style = "width:70px", autocomplete = "off" } })</td>
+                        <td  style="text-align:left;">@Html.Label("แผ่น")</td>
+                     </tr>
+                    @Html.ValidationMessageFor(model => model.SCuts.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        @*<td class="form-control-static">@Html.DropDownListFor(model => model.SCuts.Machine_Cut, new SelectList(new List<Object> { new { value = "Champfond", text = "Champfond" }, new { value = "Schelling", text = "Schelling" } }, "value", "text"), new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tcut", @class = "form-control-static", style = "width:50px", autocomplete = "off" } })</td>*@
+                        <td class="form-control-static">
+                            <p>@Html.RadioButtonFor(model => model.SCuts.Machine_Cut, "Champfond", new { Checked = "checked" }) Champfond</p>
+                        </td>
+                        <td class="form-control-static">
+                            <p>@Html.RadioButtonFor(model => model.SCuts.Machine_Cut, "Schelling") Schelling</p>
+                        </td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SCuts.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SEdgebandings.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxEdgeBanding, new { id = "cedge" })<div class="slider round"></div></label></td>
+                        <td style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td style="text-align:center;">@Html.EditorFor(model => model.SEdgebandings.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tedge", @class = "form-control", style = "width:90px", autocomplete = "off" } })</td>
+                        <td style="text-align:left;">@Html.Label("เมตร")</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SEdgebandings.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SDrills.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxDrill, new { id = "cdrill" })<div class="slider round"></div></label></td>
+                        <td style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td style="text-align:center;">@Html.EditorFor(model => model.SDrills.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tdrill", @class = "form-control", style = "width:70px", autocomplete = "off" } })</td>
+                        <td style="text-align:left;">@Html.Label("ชิ้น")</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SDrills.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SPaintings.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxPainting, new { id = "cpaint" })<div class="slider round"></div></label></td>
+                        <td style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td style="text-align:center;">@Html.EditorFor(model => model.SPaintings.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tpaint", @Value = "0", @class = "form-control", style = "width:70px", autocomplete = "off" } })</td>
+                        <td style="text-align:left;">@Html.Label("ชิ้น")</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SPaintings.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SCleanings.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxCleaning, new { id = "cclean" })<div class="slider round"></div></label></td>
+                        <td style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td style="text-align:center;">@Html.EditorFor(model => model.SCleanings.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tclean", @Value = "0", @class = "form-control", style = "width:70px", autocomplete = "off" } })</td>
+                        <td style="text-align:left;">@Html.Label("ชิ้น")</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SCleanings.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subc2bs.OrderID_Packing, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                <table style="width:25%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxPacking, new { id = "cpack" })<div class="slider round"></div></label></td>
+                        <td style="text-align:left;">@Html.Label("จำนวน")</td>
+                        <td style="text-align:center;">@Html.EditorFor(model => model.SPackings.Quantity, new { htmlAttributes = new { @type = "number", disabled = "disabled", id = "tpack", @Value = "0", @class = "form-control", style = "width:70px", autocomplete = "off" } })</td>
+                        <td style="text-align:left;">@Html.Label("ชิ้น")</td>
+                    </tr>
+                    @Html.ValidationMessageFor(model => model.SPackings.Quantity, "", new { @class = "text-danger" })
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subc2bs.OrderID_QC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table style="width:8%">
+                    <tr>
+                        <td style="text-align:center;"><label class="switch">@Html.CheckBoxFor(model => model.Subc2bs.CheckBoxQC)<div class="slider round"></div></label></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subc2bs.OrderID_Pickup, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table style="width:25%">
+                    <tr>
+                        <td class="form-control-static">
+                            <p>@Html.RadioButtonFor(model => model.SPickups.QC_Comment, "ลูกค้ามารับ", new { Checked = "checked" }) ลูกค้ามารับ</p>
+                        </td>
+                        <td class="form-control-static">
+                            <p>@Html.RadioButtonFor(model => model.SPickups.QC_Comment, "ไปส่งลูกค้า") ไปส่งลูกค้า</p>
+                        </td>
+                        @*<td>@Html.DropDownListFor(model => model.SPickups.QC_Comment, new SelectList(new List<Object> { new { value = "ลูกค้ามารับ", text = "ลูกค้ามารับ" }, new { value = "ไปส่งลูกค้า", text = "ไปส่งลูกค้า" } }, "value", "text"))</td>*@
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subc2bs.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subc2bs.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subc2bs.Comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="สร้าง" class="btn btn-default" />
+                @Html.ActionLink("กลับสู่หน้าหลัก", "Index", "UserWorks", null, new { @class = "btn btn-default" })
+            </div>
+
         </div>
     </div>
-</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index", "UserWorks")
-</div>
+@*<div>
+    <input class="coupon_question" id="1" type="checkbox" name="coupon_question" value="1" onclick="document.getElementById('test').disabled=this.checked;" />
+    <input id="test" name="coupon_question1" value="sadasdasd" />
+
+    <input type="checkbox" id="yourBox">
+    <input type="text" id="yourText">
+</div>*@
+
+
+
+@*onchange="valueChanged()"*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    document.getElementById('clami').onchange = function () {
+        document.getElementById('tlami').disabled = !this.checked;
+        document.getElementById('tlami').value = 0;
+    };
+    document.getElementById('ccut').onchange = function () {
+        document.getElementById('tcut').disabled = !this.checked;
+        document.getElementById('tcut').value = 0;
+    };
+    document.getElementById('cedge').onchange = function () {
+        document.getElementById('tedge').disabled = !this.checked;
+        document.getElementById('tedge').value = 0;
+    };
+    document.getElementById('cdrill').onchange = function () {
+        document.getElementById('tdrill').disabled = !this.checked;
+        document.getElementById('tdrill').value = 0;
+    };
+    document.getElementById('cpaint').onchange = function () {
+        document.getElementById('tpaint').disabled = !this.checked;
+        document.getElementById('tpaint').value = 0;
+    };
+    document.getElementById('cclean').onchange = function () {
+        document.getElementById('tclean').disabled = !this.checked;
+        document.getElementById('tclean').value = 0;
+    };
+    document.getElementById('cpack').onchange = function () {
+        document.getElementById('tpack').disabled = !this.checked;
+        document.getElementById('tpack').value = 0;
+    };
+</script>
+
+@*<script type="text/javascript">
+        jQuery(document).ready(function () {
+            $(".coupon_question").click(function () {
+                $('.test').attr("disabled", $(this).is(":checked"));
+            });
+        });
+
+    </script>*@
+
+<script type="text/javascript">
+
+    $('coupon_question').change(function () {
+        console.log($(this).val());
+    });
+
+
+    function valueChanged() {
+        console.log("adssd");
+        if ($('.coupon_question').is(":checked")) {
+            console.log("checked");
+            document.getElementById("test").removeAttr('disabled');
+        }
+        else {
+            console.log("unchecked");
+            $(".answer").css('disabled', 'true');
+        }
+    }
+
+</script>

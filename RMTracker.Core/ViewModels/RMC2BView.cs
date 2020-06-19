@@ -11,6 +11,15 @@ namespace RMTracker.Core.ViewModels
     {
         public Sub_C2B Subc2bs { get; set; }
         public User_Works Userwork { get; set; }
+        public s_Lamination SLaminations { get; set; }
+        public s_Cut SCuts { get; set; }
+        public s_Edgebanding SEdgebandings { get; set; }
+        public s_Drill SDrills { get; set; }
+        public s_Painting SPaintings { get; set; }
+        public s_Cleaning SCleanings { get; set; }
+        public s_Packing SPackings { get; set; }
+        public s_QC SQCs { get; set; }
+        public s_Pickup SPickups { get; set; }
         public IEnumerable<User_Works> Userworks { get; set; }
         
     }

@@ -1,0 +1,52 @@
+﻿@model RMTracker.Core.Models.s_Lamination
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h3>เริ่มงานปิดผิว</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 form-control-static">
+                @Html.DropDownListFor(model => model.User, new SelectList(Model.User_Station, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Machine_Lamination, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table style="width:25%">
+                    <tr>
+                            <p>@Html.RadioButtonFor(model => model.Machine_Lamination, "PRESS1", new { Checked = "checked" })<img src="~/Content/Images/HeroProduction/ปิดผิว/PRESS1_wolverine.png" width="100" height="100" title="PRESS1"></p>
+                            <p>@Html.RadioButtonFor(model => model.Machine_Lamination, "PRESS2")<img src="~/Content/Images/HeroProduction/ปิดผิว/PRESS2_thor.png" width="100" height="100" title="PRESS2"></p>
+                    </tr>
+                </table>
+            </div>
+         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ยืนยัน" class="btn btn-default" />
+                @Html.ActionLink("ยกเลิก", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

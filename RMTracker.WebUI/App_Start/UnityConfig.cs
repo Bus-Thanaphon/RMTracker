@@ -50,6 +50,23 @@ namespace RMTracker.WebUI
             container.RegisterType<IRepository<Sub_C2B>, SQLRepository<Sub_C2B>>();
             container.RegisterType<IRepository<On_Hold>, SQLRepository<On_Hold>>();
             container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+            container.RegisterType<IRepository<s_Lamination>, SQLRepository<s_Lamination>>();
+            container.RegisterType<IRepository<s_Cut>, SQLRepository<s_Cut>>();
+            container.RegisterType<IRepository<s_Edgebanding>, SQLRepository<s_Edgebanding>>();
+            container.RegisterType<IRepository<s_Drill>, SQLRepository<s_Drill>>();
+            container.RegisterType<IRepository<s_Painting>, SQLRepository<s_Painting>>();
+            container.RegisterType<IRepository<s_Cleaning>, SQLRepository<s_Cleaning>>();
+            container.RegisterType<IRepository<s_Packing>, SQLRepository<s_Packing>>();
+            container.RegisterType<IRepository<s_QC>, SQLRepository<s_QC>>();
+            container.RegisterType<IRepository<s_Pickup>, SQLRepository<s_Pickup>>();
+            container.RegisterType<IRepository<UserList>, SQLRepository<UserList>>();
+            container.RegisterType<IRepository<MachineList>, SQLRepository<MachineList>>();
+            container.RegisterType<IRepository<Departmentuser>, SQLRepository<Departmentuser>>();
+            container.RegisterType<IRepository<WorksPause>, SQLRepository<WorksPause>>();
+            container.RegisterType<IRepository<WorksDenine>, SQLRepository<WorksDenine>>();
+            container.RegisterType<IRepository<SO_PAUSE>, SQLRepository<SO_PAUSE>>();
+            container.RegisterType<IRepository<ReasonPause>, SQLRepository<ReasonPause>>();
+            container.RegisterType<IRepository<ReasonDenine>, SQLRepository<ReasonDenine>>();
         }
     }
 }

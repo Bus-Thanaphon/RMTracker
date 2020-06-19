@@ -1,0 +1,64 @@
+﻿@model RMTracker.Core.Models.ReasonDenine
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ReasonDenine</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreateAt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreateAt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreateAt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.No, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.No, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.No, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Station, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Station, new List<SelectListItem>
+                {
+                        new SelectListItem() {Text = "ปิดผิว", Value="ปิดผิว"},
+                        new SelectListItem() {Text = "ตัด", Value="ตัด"},
+                        new SelectListItem() {Text = "ปิดขอบ", Value="ปิดขอบ"},
+                        new SelectListItem() {Text = "เจาะ", Value="เจาะ"},
+                        new SelectListItem() {Text = "ทำสี", Value="ทำสี"},
+                        new SelectListItem() {Text = "ทำความสะอาด", Value="ทำความสะอาด"},
+                        new SelectListItem() {Text = "แพ็ค", Value="แพ็ค"},
+                        new SelectListItem() {Text = "QC", Value="QC"},
+                        new SelectListItem() {Text = "จัดส่ง", Value="จัดส่ง"}
+                })
+                @Html.ValidationMessageFor(model => model.Station, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

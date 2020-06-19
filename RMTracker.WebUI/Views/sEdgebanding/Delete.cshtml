@@ -1,0 +1,88 @@
+﻿@model RMTracker.Core.Models.s_Edgebanding
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>s_Edgebanding</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Edgebanding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Edgebanding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C2BNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C2BNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubC2B)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubC2B)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Machine_Edgebanding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Machine_Edgebanding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Special_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Special_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status_Edgebanding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status_Edgebanding)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

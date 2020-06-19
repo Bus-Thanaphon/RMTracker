@@ -1,0 +1,132 @@
+﻿@model IEnumerable<RMTracker.Core.Models.s_Drill>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>งานเจาะ</h2>
+
+<p>
+    @Html.ActionLink("กลับสู่หน้าหลัก", "Index", "UserWorks")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Special_status)*@
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubC2B)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status_Drill)
+            </th>
+            <th>
+                @Html.Label("เจาะกี่แผ่น")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Machine_Drill)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Special_status)
+                </td>
+                <td>
+                    @if (item.Urgent_Status == "0")
+                    {
+                    }
+                    @if (item.Urgent_Status == "1")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/UrgentR.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill == "หยุด")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/salestop.png")" width="25" height="25">
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubC2B)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer)
+                </td>
+                <td>
+                    @if (item.Status_Drill == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill == "หยุด" || item.Status_Drill == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill == "ปฏิเสธ" || item.Status_Drill == "ปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill != "อยู่ในคิว" && item.Status_Drill != "หยุด" && item.Status_Drill != "หยุดชั่วคราว"
+                        && item.Status_Drill != "กำลังผลิต" && item.Status_Drill != "เสร็จ" && item.Status_Drill != "ปฏิเสธ"
+                        && item.Status_Drill != "ถูกปฏิเสธ" && item.Status_Drill != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Drill)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+
+                    @if (item.Machine_Drill == "SCM TECH Z สีแดง")
+                    {
+                        <img src="@Url.Content("~/Content/Images/HeroProduction/เจาะ/SCM Tech Z-RED_thanos.png")" width="25" height="25">
+                    }
+                    @if (item.Machine_Drill == "SCM TECH Z สีดำ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/HeroProduction/เจาะ/SCM Tech Z-BLACK_vision.png")" width="25" height="25">
+                    }
+                    @if (item.Machine_Drill == "WEEKE")
+                    {
+                        <img src="@Url.Content("~/Content/Images/HeroProduction/เจาะ/Weke_batman.png")" width="25" height="25">
+                    }
+                    @Html.DisplayFor(modelItem => item.Machine_Drill)
+                </td>
+
+                <td>
+                    
+                        <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
+                    
+                </td>
+            </tr>
+        }
+    </table>
+</div>

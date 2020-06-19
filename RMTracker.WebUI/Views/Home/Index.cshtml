@@ -1,89 +1,313 @@
 ﻿@using RMTracker.WebUI.Models
 @model LoginViewModel
+
+
 @{
     ViewBag.Title = "Log in";
 }
+    <style>
+        a:hover {
+            cursor: pointer;
+        }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 5px;
+        }
+
+        .grid-item {
+            padding: 5px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .grid-item-right {
+            padding: 5px;
+            font-size: 30px;
+            text-align: right;
+        }
+
+        .grid-item-left {
+            padding: 5px;
+            font-size: 30px;
+            text-align: left;
+        }
+
+        .loginbox {
+            width: 75%;
+            /*height: 50%;*/
+            background: #000;
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            /*position: absolute;
+            transform: translate(-50%,-50%);
+            box-sizing: border-box;*/
+        }
+    </style>
+@Styles.Render("~/Content/Main.css")
+<center><h2>Intelligent Tracking</h2></center>
+<center>
+    <div>
+        <div class="grid-container">
+            <div class="grid-item-right">
+                @*<a href="@Url.Action("Index", "UserWorks")" title="หน้าฝ่ายขาย" class="links">
+                    <img src="~/Content/Images/Station/Login_Sales01_150x150.png" title="ฝ่ายขาย">
+                </a>*@
+                <a data-toggle="modal" data-target=".bootstrapmodal1" title="หน้าฝ่ายขาย" class="links">
+                    <img src="~/Content/Images/Station/Login_Sales01_150x150.png" title="ฝ่ายขาย">
+                </a>
+                <div class="modal bootstrapmodal1" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "UserWorks", FormMethod.Get))
+                                {
+                                        <center><h3>รหัสผ่าน</h3></center>
+                                        <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off"/>
+                                        <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    @*<div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>*@
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("Log in", "Index", "UserWorks", null, new { @class = "btn btn-primary btn-large" })
+            </div>
+            <div class="grid-item-left">
+                <a data-toggle="modal" data-target=".bootstrapmodal2" title="หน้าแผนกปิดผิว" class="links">
+                    <img src="~/Content/Images/Station/Login_Laminate01_150x150.png" title="ปิดผิว">
+                </a>
+                <div class="modal bootstrapmodal2" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sLamination", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
                     </div>
-                    
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+            <div class="grid-item-right">
+                <a data-toggle="modal" data-target=".bootstrapmodal3" title="หน้าแผนกตัด" class="links">
+                    <img src="~/Content/Images/Station/Login_Cut01_150x150.png" title="ตัด">
+                </a>
+                <div class="modal bootstrapmodal3" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sCut", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-left">
+                <a data-toggle="modal" data-target=".bootstrapmodal4" title="หน้าแผนกปิดขอบ" class="links">
+                    <img src="~/Content/Images/Station/Login_Edge01_150x150.png" title="ปิดขอบ">
+                </a>
+                <div class="modal bootstrapmodal4" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sEdgebanding", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-right">
+                <a data-toggle="modal" data-target=".bootstrapmodal5" title="หน้าแผนกเจาะ" class="links">
+                    <img src="~/Content/Images/Station/Login_CNC01_150x150.png" title="เจาะ">
+                </a>
+                <div class="modal bootstrapmodal5" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sDrill", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-left">
+                <a data-toggle="modal" data-target=".bootstrapmodal6" title="หน้าแผนกทำสี" class="links">
+                    <img src="~/Content/Images/Station/Login_Paint01_150x150.png" title="ทำสี">
+                </a>
+                <div class="modal bootstrapmodal6" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sPainting", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-right">
+                <a data-toggle="modal" data-target=".bootstrapmodal7" title="หน้าแผนกทำความสะอาด" class="links">
+                    <img src="~/Content/Images/Station/Login_Clean01_150x150.png" title="ทำความสะอาด">
+                </a>
+                <div class="modal bootstrapmodal7" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sCleaning", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-left">
+                <a data-toggle="modal" data-target=".bootstrapmodal8" title="หน้าแผนกแพ็ค" class="links">
+                    <img src="~/Content/Images/Station/Login_Pack01_150x150.png" title="แพ็ค">
+                </a>
+                <div class="modal bootstrapmodal8" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sPacking", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-right">
+                <a data-toggle="modal" data-target=".bootstrapmodal9" title="หน้าแผนก QC" class="links">
+                    <img src="~/Content/Images/Station/Login_QC01_150x150.png" title="QC">
+                </a>
+                <div class="modal bootstrapmodal9" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sQC", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item-left">
+                <a data-toggle="modal" data-target=".bootstrapmodal10" title="หน้าแผนกจัดส่ง" class="links">
+                    <img src="~/Content/Images/Station/Login_Deliver01_150x150.png" title="จัดส่ง">
+                </a>
+                <div class="modal bootstrapmodal10" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                            </div>
+                            <div class="modal-body" style="background-color: white; color: black;text-align: center;line-height: 10px">
+                                @using (Html.BeginForm("CheckPassword", "sPickup", FormMethod.Get))
+                                {
+                                    <center><h3>รหัสผ่าน</h3></center>
+                                    <input type="password" name="Password" style="width: 150px; height:30px;" autocomplete="off" />
+                                    <input type="submit" value="เข้าสู่ระบบ" class="btn btn-success" />
+                                }
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</center>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-@*<div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>*@

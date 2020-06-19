@@ -57,6 +57,258 @@
     <Compile Include="Migrations\202004230719324_db.designer.cs">
       <DependentUpon>202004230719324_db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005130141113_db1.cs" />
+    <Compile Include="Migrations\202005130141113_db1.designer.cs">
+      <DependentUpon>202005130141113_db1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005130222544_db2.cs" />
+    <Compile Include="Migrations\202005130222544_db2.designer.cs">
+      <DependentUpon>202005130222544_db2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005160241246_db3.cs" />
+    <Compile Include="Migrations\202005160241246_db3.designer.cs">
+      <DependentUpon>202005160241246_db3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005180158249_db4.cs" />
+    <Compile Include="Migrations\202005180158249_db4.designer.cs">
+      <DependentUpon>202005180158249_db4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005180821382_db5.cs" />
+    <Compile Include="Migrations\202005180821382_db5.designer.cs">
+      <DependentUpon>202005180821382_db5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005180825245_db6.cs" />
+    <Compile Include="Migrations\202005180825245_db6.designer.cs">
+      <DependentUpon>202005180825245_db6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005180854409_db7.cs" />
+    <Compile Include="Migrations\202005180854409_db7.designer.cs">
+      <DependentUpon>202005180854409_db7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005180941509_db8.cs" />
+    <Compile Include="Migrations\202005180941509_db8.designer.cs">
+      <DependentUpon>202005180941509_db8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005190808410_db9.cs" />
+    <Compile Include="Migrations\202005190808410_db9.designer.cs">
+      <DependentUpon>202005190808410_db9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005190911527_db10.cs" />
+    <Compile Include="Migrations\202005190911527_db10.designer.cs">
+      <DependentUpon>202005190911527_db10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200215595_db11.cs" />
+    <Compile Include="Migrations\202005200215595_db11.designer.cs">
+      <DependentUpon>202005200215595_db11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200226567_db12.cs" />
+    <Compile Include="Migrations\202005200226567_db12.designer.cs">
+      <DependentUpon>202005200226567_db12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200600088_db13.cs" />
+    <Compile Include="Migrations\202005200600088_db13.designer.cs">
+      <DependentUpon>202005200600088_db13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200636232_db14.cs" />
+    <Compile Include="Migrations\202005200636232_db14.designer.cs">
+      <DependentUpon>202005200636232_db14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200814415_db15.cs" />
+    <Compile Include="Migrations\202005200814415_db15.designer.cs">
+      <DependentUpon>202005200814415_db15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200944341_db16.cs" />
+    <Compile Include="Migrations\202005200944341_db16.designer.cs">
+      <DependentUpon>202005200944341_db16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005210436302_db17.cs" />
+    <Compile Include="Migrations\202005210436302_db17.designer.cs">
+      <DependentUpon>202005210436302_db17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005210654560_db18.cs" />
+    <Compile Include="Migrations\202005210654560_db18.designer.cs">
+      <DependentUpon>202005210654560_db18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005220216448_db19.cs" />
+    <Compile Include="Migrations\202005220216448_db19.designer.cs">
+      <DependentUpon>202005220216448_db19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005220319372_db20.cs" />
+    <Compile Include="Migrations\202005220319372_db20.designer.cs">
+      <DependentUpon>202005220319372_db20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005220652463_db21.cs" />
+    <Compile Include="Migrations\202005220652463_db21.designer.cs">
+      <DependentUpon>202005220652463_db21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005220856323_db22.cs" />
+    <Compile Include="Migrations\202005220856323_db22.designer.cs">
+      <DependentUpon>202005220856323_db22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005250200280_db23.cs" />
+    <Compile Include="Migrations\202005250200280_db23.designer.cs">
+      <DependentUpon>202005250200280_db23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005250838054_db24.cs" />
+    <Compile Include="Migrations\202005250838054_db24.designer.cs">
+      <DependentUpon>202005250838054_db24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005250908114_db25.cs" />
+    <Compile Include="Migrations\202005250908114_db25.designer.cs">
+      <DependentUpon>202005250908114_db25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260258291_db26.cs" />
+    <Compile Include="Migrations\202005260258291_db26.designer.cs">
+      <DependentUpon>202005260258291_db26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260441085_db27.cs" />
+    <Compile Include="Migrations\202005260441085_db27.designer.cs">
+      <DependentUpon>202005260441085_db27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260719121_db28.cs" />
+    <Compile Include="Migrations\202005260719121_db28.designer.cs">
+      <DependentUpon>202005260719121_db28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005260752449_db29.cs" />
+    <Compile Include="Migrations\202005260752449_db29.designer.cs">
+      <DependentUpon>202005260752449_db29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005270139114_db30.cs" />
+    <Compile Include="Migrations\202005270139114_db30.designer.cs">
+      <DependentUpon>202005270139114_db30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005270426577_db31.cs" />
+    <Compile Include="Migrations\202005270426577_db31.designer.cs">
+      <DependentUpon>202005270426577_db31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005270430031_db32.cs" />
+    <Compile Include="Migrations\202005270430031_db32.designer.cs">
+      <DependentUpon>202005270430031_db32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005280353465_db33.cs" />
+    <Compile Include="Migrations\202005280353465_db33.designer.cs">
+      <DependentUpon>202005280353465_db33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005280915129_db34.cs" />
+    <Compile Include="Migrations\202005280915129_db34.designer.cs">
+      <DependentUpon>202005280915129_db34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005290327368_db35.cs" />
+    <Compile Include="Migrations\202005290327368_db35.designer.cs">
+      <DependentUpon>202005290327368_db35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005290535394_db36.cs" />
+    <Compile Include="Migrations\202005290535394_db36.designer.cs">
+      <DependentUpon>202005290535394_db36.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005290933277_db37.cs" />
+    <Compile Include="Migrations\202005290933277_db37.designer.cs">
+      <DependentUpon>202005290933277_db37.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005290947171_db38.cs" />
+    <Compile Include="Migrations\202005290947171_db38.designer.cs">
+      <DependentUpon>202005290947171_db38.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005300631064_db39.cs" />
+    <Compile Include="Migrations\202005300631064_db39.designer.cs">
+      <DependentUpon>202005300631064_db39.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005300807154_db40.cs" />
+    <Compile Include="Migrations\202005300807154_db40.designer.cs">
+      <DependentUpon>202005300807154_db40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006010822213_db41.cs" />
+    <Compile Include="Migrations\202006010822213_db41.designer.cs">
+      <DependentUpon>202006010822213_db41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006010954499_db42.cs" />
+    <Compile Include="Migrations\202006010954499_db42.designer.cs">
+      <DependentUpon>202006010954499_db42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006020240238_db43.cs" />
+    <Compile Include="Migrations\202006020240238_db43.designer.cs">
+      <DependentUpon>202006020240238_db43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006020242260_db44.cs" />
+    <Compile Include="Migrations\202006020242260_db44.designer.cs">
+      <DependentUpon>202006020242260_db44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006030717531_db45.cs" />
+    <Compile Include="Migrations\202006030717531_db45.designer.cs">
+      <DependentUpon>202006030717531_db45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006030750371_db46.cs" />
+    <Compile Include="Migrations\202006030750371_db46.designer.cs">
+      <DependentUpon>202006030750371_db46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006030927030_db47.cs" />
+    <Compile Include="Migrations\202006030927030_db47.designer.cs">
+      <DependentUpon>202006030927030_db47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006040246199_db48.cs" />
+    <Compile Include="Migrations\202006040246199_db48.designer.cs">
+      <DependentUpon>202006040246199_db48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006040320185_db49.cs" />
+    <Compile Include="Migrations\202006040320185_db49.designer.cs">
+      <DependentUpon>202006040320185_db49.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006040932494_db50.cs" />
+    <Compile Include="Migrations\202006040932494_db50.designer.cs">
+      <DependentUpon>202006040932494_db50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006041546005_db51.cs" />
+    <Compile Include="Migrations\202006041546005_db51.designer.cs">
+      <DependentUpon>202006041546005_db51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006050204177_db52.cs" />
+    <Compile Include="Migrations\202006050204177_db52.designer.cs">
+      <DependentUpon>202006050204177_db52.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006060202241_db53.cs" />
+    <Compile Include="Migrations\202006060202241_db53.designer.cs">
+      <DependentUpon>202006060202241_db53.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006060633105_db54.cs" />
+    <Compile Include="Migrations\202006060633105_db54.designer.cs">
+      <DependentUpon>202006060633105_db54.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006090920066_db55.cs" />
+    <Compile Include="Migrations\202006090920066_db55.designer.cs">
+      <DependentUpon>202006090920066_db55.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006110434275_db56.cs" />
+    <Compile Include="Migrations\202006110434275_db56.designer.cs">
+      <DependentUpon>202006110434275_db56.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006110437508_db57.cs" />
+    <Compile Include="Migrations\202006110437508_db57.designer.cs">
+      <DependentUpon>202006110437508_db57.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006110452169_db58.cs" />
+    <Compile Include="Migrations\202006110452169_db58.designer.cs">
+      <DependentUpon>202006110452169_db58.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006110834295_db59.cs" />
+    <Compile Include="Migrations\202006110834295_db59.designer.cs">
+      <DependentUpon>202006110834295_db59.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006130249277_db60.cs" />
+    <Compile Include="Migrations\202006130249277_db60.designer.cs">
+      <DependentUpon>202006130249277_db60.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006130255022_db61.cs" />
+    <Compile Include="Migrations\202006130255022_db61.designer.cs">
+      <DependentUpon>202006130255022_db61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006130615596_db62.cs" />
+    <Compile Include="Migrations\202006130615596_db62.designer.cs">
+      <DependentUpon>202006130615596_db62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006130710412_db63.cs" />
+    <Compile Include="Migrations\202006130710412_db63.designer.cs">
+      <DependentUpon>202006130710412_db63.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -70,11 +322,209 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-3.5.1.min.map" />
+    <None Include="Scripts\jquery-3.5.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004230719324_db.resx">
       <DependentUpon>202004230719324_db.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130141113_db1.resx">
+      <DependentUpon>202005130141113_db1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130222544_db2.resx">
+      <DependentUpon>202005130222544_db2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005160241246_db3.resx">
+      <DependentUpon>202005160241246_db3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005180158249_db4.resx">
+      <DependentUpon>202005180158249_db4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005180821382_db5.resx">
+      <DependentUpon>202005180821382_db5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005180825245_db6.resx">
+      <DependentUpon>202005180825245_db6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005180854409_db7.resx">
+      <DependentUpon>202005180854409_db7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005180941509_db8.resx">
+      <DependentUpon>202005180941509_db8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005190808410_db9.resx">
+      <DependentUpon>202005190808410_db9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005190911527_db10.resx">
+      <DependentUpon>202005190911527_db10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200215595_db11.resx">
+      <DependentUpon>202005200215595_db11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200226567_db12.resx">
+      <DependentUpon>202005200226567_db12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200600088_db13.resx">
+      <DependentUpon>202005200600088_db13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200636232_db14.resx">
+      <DependentUpon>202005200636232_db14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200814415_db15.resx">
+      <DependentUpon>202005200814415_db15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200944341_db16.resx">
+      <DependentUpon>202005200944341_db16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005210436302_db17.resx">
+      <DependentUpon>202005210436302_db17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005210654560_db18.resx">
+      <DependentUpon>202005210654560_db18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005220216448_db19.resx">
+      <DependentUpon>202005220216448_db19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005220319372_db20.resx">
+      <DependentUpon>202005220319372_db20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005220652463_db21.resx">
+      <DependentUpon>202005220652463_db21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005220856323_db22.resx">
+      <DependentUpon>202005220856323_db22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005250200280_db23.resx">
+      <DependentUpon>202005250200280_db23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005250838054_db24.resx">
+      <DependentUpon>202005250838054_db24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005250908114_db25.resx">
+      <DependentUpon>202005250908114_db25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260258291_db26.resx">
+      <DependentUpon>202005260258291_db26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260441085_db27.resx">
+      <DependentUpon>202005260441085_db27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260719121_db28.resx">
+      <DependentUpon>202005260719121_db28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005260752449_db29.resx">
+      <DependentUpon>202005260752449_db29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005270139114_db30.resx">
+      <DependentUpon>202005270139114_db30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005270426577_db31.resx">
+      <DependentUpon>202005270426577_db31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005270430031_db32.resx">
+      <DependentUpon>202005270430031_db32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005280353465_db33.resx">
+      <DependentUpon>202005280353465_db33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005280915129_db34.resx">
+      <DependentUpon>202005280915129_db34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290327368_db35.resx">
+      <DependentUpon>202005290327368_db35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290535394_db36.resx">
+      <DependentUpon>202005290535394_db36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290933277_db37.resx">
+      <DependentUpon>202005290933277_db37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290947171_db38.resx">
+      <DependentUpon>202005290947171_db38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005300631064_db39.resx">
+      <DependentUpon>202005300631064_db39.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005300807154_db40.resx">
+      <DependentUpon>202005300807154_db40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006010822213_db41.resx">
+      <DependentUpon>202006010822213_db41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006010954499_db42.resx">
+      <DependentUpon>202006010954499_db42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020240238_db43.resx">
+      <DependentUpon>202006020240238_db43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020242260_db44.resx">
+      <DependentUpon>202006020242260_db44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006030717531_db45.resx">
+      <DependentUpon>202006030717531_db45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006030750371_db46.resx">
+      <DependentUpon>202006030750371_db46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006030927030_db47.resx">
+      <DependentUpon>202006030927030_db47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040246199_db48.resx">
+      <DependentUpon>202006040246199_db48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040320185_db49.resx">
+      <DependentUpon>202006040320185_db49.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040932494_db50.resx">
+      <DependentUpon>202006040932494_db50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006041546005_db51.resx">
+      <DependentUpon>202006041546005_db51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006050204177_db52.resx">
+      <DependentUpon>202006050204177_db52.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006060202241_db53.resx">
+      <DependentUpon>202006060202241_db53.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006060633105_db54.resx">
+      <DependentUpon>202006060633105_db54.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006090920066_db55.resx">
+      <DependentUpon>202006090920066_db55.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110434275_db56.resx">
+      <DependentUpon>202006110434275_db56.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110437508_db57.resx">
+      <DependentUpon>202006110437508_db57.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110452169_db58.resx">
+      <DependentUpon>202006110452169_db58.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110834295_db59.resx">
+      <DependentUpon>202006110834295_db59.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006130249277_db60.resx">
+      <DependentUpon>202006130249277_db60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006130255022_db61.resx">
+      <DependentUpon>202006130255022_db61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006130615596_db62.resx">
+      <DependentUpon>202006130615596_db62.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006130710412_db63.resx">
+      <DependentUpon>202006130710412_db63.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

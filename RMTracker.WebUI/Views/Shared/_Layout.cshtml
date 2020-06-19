@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - allwork</title>
+    <link href="~/Content/Images/allworklogo_dark.png" rel="shortcut icon" type="image/x-icon" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
@@ -28,7 +29,7 @@
                     @*<li>@Html.ActionLink("List", "Index", "UserWorks")</li>*@
                 </ul>
                 <div style="margin: 0 auto; text-align: center">
-                    <a href='@Url.Action("Index", "UserWorks", new { area = "" })'>
+                    <a href='@Url.Action("Index", "Home", new { area = "" })'>
                         <img src="~/Content/Images/allworklogo_dark.png" width="240" height="135" />
                         @*<img src="~/Content/Images/allworklogo.png" width="120" height="68" />*@
                     </a>
@@ -38,11 +39,16 @@
         </div>
     </div>
     <div class="container body-content relative">
-        @RenderBody()
+        @*<body style="background:#fff">*@
+            @RenderBody()
+        @*</body>*@
+        
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <center>
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Sirikrai Smart Business Solution</p>
+            </footer>
+        </center>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

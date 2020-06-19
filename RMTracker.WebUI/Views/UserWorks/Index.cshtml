@@ -1,74 +1,208 @@
 ﻿@model IEnumerable<RMTracker.Core.Models.User_Works>
-@*@model2  IEnumerable<RMTracker.Core.Models.User_Works.>*@
-    @{
-        ViewBag.Title = "Index";
-    }
+@{
+    ViewBag.Title = "Index";
+}
 
-    <h2>ออเดอร์ทั้งหมด</h2>
+<h2>@Html.ActionLink("ออเดอร์ทั้งหมด", "Index", "UserWorks")</h2>
 
-    <p>
-        @Html.ActionLink("สร้างงานใหม่", "Create")
+<h5>หน้าสถานี</h5>
+<div>
+    @Html.ActionLink("งานปิดผิว", "IndexSale", "sLamination") <text>|</text>
+    @Html.ActionLink("งานตัด", "IndexSale", "sCut") <text>|</text>
+    @Html.ActionLink("งานปิดขอบ", "IndexSale", "sEdgebanding") <text>|</text>
+    @Html.ActionLink("งานเจาะ", "IndexSale", "sDrill") <text>|</text>
+    @Html.ActionLink("งานทำสี", "IndexSale", "sPainting") <text>|</text>
+    @Html.ActionLink("งานทำความสะอาด", "IndexSale", "sCleaning") <text>|</text>
+    @Html.ActionLink("งานแพ็ค", "IndexSale", "sPacking") <text>|</text>
+    @Html.ActionLink("งานQC", "IndexSale", "sQC") <text>|</text>
+    @Html.ActionLink("งานจัดส่ง", "IndexSale", "sPickup")
+    <a href="@Url.Action("Create")" style="float: right; text -align:right" title="สร้างงาน" class="links btn btn-default">
+        <img src="@Url.Content("~/Content/Images/StatusImage/plus.png")" width="15" height="15"> สร้างงานใหม่
+    </a>
+</div>
+<div>
+    @Html.ActionLink("ออเดอร์ที่เสร็จแล้ว", "Index", new { searchByW = "FinishStatus" }) 
+</div>
+    <div class="table-responsive">
+        <p>
+
+            @*@Html.ActionLink("สร้างงานใหม่", "Create")*@
+
+            @using (Html.BeginForm("Index", "UserWorks", FormMethod.Get))
+            {
+            <div class="col-md-10 form-control-static" id="right">
+                @Html.DropDownList("searchBy", new List<SelectListItem>
+                        {
+                                new SelectListItem() {Text = "หมายเลข SO", Value="SOID"},
+                                new SelectListItem() {Text = "ชื่อพนักงานขาย", Value="Name"},
+                                new SelectListItem() {Text = "ชื่อลูกค้า", Value="Customer"}
+                        }, null, new { Style = "float: left; width: 150px; height: 26px;" })
+
+                @Html.TextBox("search", null, new { @Style = "float: left; width: 200px;" })
+                <input type="submit" value="ค้นหา" />
+                @Html.ActionLink("ล้างการค้นหา", "Index", "UserWorks")
+                @*<label>@Html.CheckBox("checkResp", new { value = "true", name = "checkResp" })ค้นหาแบบตรงทุกตัวอักษร</label>*@
+            </div>
+
+            }
+
+    
     </p>
+
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.C2BNo)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.C2BNo)
+                @*@Html.ActionLink("เลขSO", "Index", new { sortOrder = ViewBag.SOSort })*@
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name_Sale)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Customer)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubC2B)
-            </th>
-            <th>
+            @*<th style="text-align:center;">
+                    @Html.DisplayNameFor(model => model.SubC2B)
+                </th>*@
+            <th style="text-align:center;">
                 @Html.DisplayNameFor(model => model.Order_Status)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comment)
             </th>
             @*<th>
-            @Html.DisplayNameFor(model => model.Sub_C2B)
-        </th>*@
+                    @Html.DisplayNameFor(model => model.Sub_C2B)
+                </th>*@
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.C2BNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer)
-        </td>
-        <td>
-            @Html.ActionLink(item.subindex.Count.ToString(), "Index", "SubC2B", new { id = item.Id }, null)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Order_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment)
-        </td>
-        @*@Html.ActionLink("SubC2B", "Index", "SubC2B", new { id = item.Id }, null)
-        @foreach (var a in item.subindex)
-        {
-            @Html.ActionLink(a.SubC2B, "Index", "SubC2B", new { id = item.Id }, null)
-            @item.subindex.Count()
-        }*@
-        <td>
-            @Html.ActionLink("สร้างงานย่อย", "Create", "SubC2B", new { id = item.Id }, null) |
-            @Html.ActionLink("แก้ไข", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("รายละเอียด", "Details", new { id = item.Id }) |
-            @Html.ActionLink("ลบ", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-        }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.C2BNo)*@
+                    @Html.ActionLink(item.C2BNo, "Index", "SubC2B", new { id = item.Id }, new { title = "หน้างานย่อย" })
+                </td>
 
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Name_Sale)*@
+                    @Html.ActionLink(item.Name_Sale, "Index", "UserWorks", new { Namesearch = item.Name_Sale }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Customer, "Index", "UserWorks", new { Customersearch = item.Customer }, new { type = "submit" })
+                </td>
+                <td style="text-align:left;">
+                    @foreach (var itemindex in item.subindex)
+                    {
+                        if (itemindex.Status_AStation == "เสร็จงาน")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" title="เสร็จงาน" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "ปฏิเสธ")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" title="ปฏิเสธ" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "งานใหม่")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/new.png")" title="ปฏิเสธ" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "ยกเลิก")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" title="ยกเลิก" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "พร้อมส่ง")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/box.png")" title="พร้อมส่ง" width="25" height="25">
+                        }
+                        if (itemindex.Urgent_Status == "1" && itemindex.Status_AStation == "หยุดชั่วคราว")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/UrgentPause.png")" title="ด่วน/หยุดชั่วคราว" width="25" height="25">
+                        }
+                        if (itemindex.Urgent_Status == "1" && itemindex.Status_AStation == "หยุด")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/UrgentOnhold.png")" title="ด่วน/หยุด" width="25" height="25">
+                        }
+                        if (itemindex.Urgent_Status == "1" && itemindex.Status_AStation == "กำลังผลิต")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/UrgentProcess.png")" title="ด่วน/กำลังผลิต" width="25" height="25">
+                        }
+                        if (itemindex.Urgent_Status == "1" && itemindex.Status_AStation != "ปฏิเสธ" && itemindex.Status_AStation != "ยกเลิก" && itemindex.Status_AStation != "กำลังผลิต" && itemindex.Status_AStation != "พร้อมส่ง" && itemindex.Status_AStation != "หยุด" && itemindex.Status_AStation != "หยุดชั่วคราว" && itemindex.Status_AStation != "เสร็จงาน")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/UrgentR.png")" title="ด่วน" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "อยู่ในคิว" && itemindex.Urgent_Status == "0")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" title="อยู่ในคิว" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "กำลังผลิต" && itemindex.Urgent_Status == "0")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" title="กำลังผลิต" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "หยุดชั่วคราว" && itemindex.Urgent_Status == "0")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/Status_APA.png")" title="หยุดชั่วคราว" width="25" height="25">
+                        }
+                        if (itemindex.Status_AStation == "หยุด" && itemindex.Urgent_Status == "0")
+                        {
+                            <img src="@Url.Content("~/Content/Images/StatusImage/salestop.png")" title="หยุด" width="25" height="25">
+                        }
+                        
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                @*@Html.ActionLink("SubC2B", "Index", "SubC2B", new { id = item.Id }, null)
+                    @foreach (var a in item.subindex)
+                    {
+                        @Html.ActionLink(a.SubC2B, "Index", "SubC2B", new { id = item.Id }, null)
+                        @item.subindex.Count()
+                    }*@
+                <td>
+                    <a href="@Url.Action("Create", "SubC2B", new { id = item.Id })" title="สร้างงานย่อย" class="links">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/AddSo.png")" width="25" height="25">
+                    </a>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" title="แก้ไขออเดอร์" class="links">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/EditSo.png")" width="25" height="25">
+                    </a>
+                    @*<a href="@Url.Action("Finish", new { id = item.Id })" title="ลบออเดอร์" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/CheckUW.png")" width="25" height="25">
+                        </a> |*@
+                    <a href="@Url.Action("Delete", new { id = item.Id })" title="ลบออเดอร์" class="links">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/DeleteSo.png")" width="25" height="25">
+                    </a>
+                    @*@Html.ActionLink("สร้างงานย่อย", "Create", "SubC2B", new { id = item.Id }, null)*@
+                    @*@Html.ActionLink("แก้ไข", "Edit", new { id = item.Id })*@
+                    @*@Html.ActionLink("ลบ", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
     </table>
+</div>
+@*<div>
+    @using (Html.BeginForm("Index", "UserWorks", FormMethod.Get))
+    {
+        <div class="col-md-10 form-control-static" id="right">
+            @Html.DropDownList("searchByW", new List<SelectListItem>
+                    {
+                            new SelectListItem() {Text = "งานที่เสร็จแล้ว", Value="FinishStatus"}
+                    }, null, new { Style = "float: left; width: 150px; height: 26px;" })
+            <input type="submit" value="ค้นหา" />
+        </div>
+    }
+</div>*@
+<script>
+    function sConsole(event) {
+        event.preventDefault();
+        var data = document.getElementById("responsable");
+        console.log(data.value);
+
+    }
+</script>

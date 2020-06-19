@@ -6,7 +6,7 @@ namespace RMTracker.WebUI.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "ชื่อผู้ใช้")]
         public string Email { get; set; }
     }
 
@@ -42,20 +42,20 @@ namespace RMTracker.WebUI.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "ชื่อผู้ใช้")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "ชื่อผู้ใช้")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "รหัสผ่าน")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -66,13 +66,13 @@ namespace RMTracker.WebUI.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "ชื่อผู้ใช้")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "รหัสผ่าน")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
@@ -94,13 +94,13 @@ namespace RMTracker.WebUI.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "ชื่อผู้ใช้")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "รหัสผ่าน")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
@@ -115,7 +115,7 @@ namespace RMTracker.WebUI.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "ชื่อผู้ใช้")]
         public string Email { get; set; }
     }
 }

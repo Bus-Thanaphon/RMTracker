@@ -1,76 +1,562 @@
-﻿@model IEnumerable<RMTracker.Core.Models.Sub_C2B>
+﻿@model RMTracker.Core.ViewModels.IndexView
+@{
 
+    RMTracker.Core.Models.User_Works Userwork = ViewData["User_Works"] as RMTracker.Core.Models.User_Works;
+}
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>งานย่อย</h2>
-
+<style type="text/css">
+    a:hover {
+        cursor: pointer;
+    }
+</style>
+<h2>งานย่อยของ " @Html.Label(Model.Userwork.C2BNo) "</h2>
 
 <p>
+    @using (Html.BeginForm("Index", "ProductManager", FormMethod.Get))
+    { }
     @Html.ActionLink("กลับหน้าออเดอร์ทั้งหมด", "Index", "UserWorks")
+    @*@Html.ActionLink("สร้างงานย่อย", "Create", new { id = Model.Userwork.Id }, new { @style = "float: right; text -align:right" })*@
+    <a href="@Url.Action("Create", "SubC2B", new { id = Model.Userwork.Id })" style = "float: right; text -align:right" title="สร้างงานย่อย" class="links">
+        <img src="@Url.Content("~/Content/Images/StatusImage/AddSo.png")" width="25" height="25">
+    </a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.C2BNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubC2B)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID_Lamination)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID_Cut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID_EdgeBanding)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID_Drill)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID_Packing)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID_Pickup)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th> </th>
+            <th> </th>
+            <th>
+                @Html.Label("หมายเลขงานย่อย")
+            </th>
+            <th>
+                @Html.Label("ปิดผิว")
+            </th>
+            <th>
+                @Html.Label("ตัด")
+            </th>
+            <th>
+                @Html.Label("ปิดขอบ")
+            </th>
+            <th>
+                @Html.Label("เจาะ")
+            </th>
+            <th>
+                @Html.Label("ทำสี")
+            </th>
+            <th>
+                @Html.Label("ทำความสะอาด")
+            </th>
+            <th>
+                @Html.Label("แพ็ค")
+            </th>
+            <th>
+                @Html.Label("QC")
+            </th>
+            <th>
+                @Html.Label("จัดส่ง")
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.C2BNo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SubC2B)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderID_Lamination)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderID_Cut)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderID_EdgeBanding)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderID_Drill)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderID_Packing)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderID_Pickup)
-    </td>
-    <td>
-        @Html.ActionLink("แก้ไข", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("รายละเอียด", "Details", new { id = item.Id }) |
-        @Html.ActionLink("ลบ", "Delete", new { id = item.Id })
-    </td>
-</tr>
+        @foreach (var item in Model.C2BView)
+        {
+            <tr>
+                <td>
+                    @if (item.Urgent_Status == "0")
+                    {
+                    }
+                    @if (item.Urgent_Status == "1")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/UrgentR.png")" width="25" height="25">
+                    }
+                </td>
+                <td>
+                    @if (item.Status_AStation == "งานใหม่")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/new.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Status_APA.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "หยุด")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/salestop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "ปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "พร้อมส่ง")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/box.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "เสร็จงาน")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_AStation == "ยกเลิก")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubC2B)
+                </td>
+                <td>
+                    @if (item.Status_Lamination.Status_Lamination == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Lamination == "หยุด" || item.Status_Lamination.Status_Lamination == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Lamination == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Lamination == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Lamination == "ปฏิเสธ" || item.Status_Lamination.Status_Lamination == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Lamination == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Lamination != "อยู่ในคิว" && item.Status_Lamination.Status_Lamination != "หยุด" && item.Status_Lamination.Status_Lamination != "หยุดชั่วคราว"
+                        && item.Status_Lamination.Status_Lamination != "กำลังผลิต" && item.Status_Lamination.Status_Lamination != "เสร็จ" && item.Status_Lamination.Status_Lamination != "ปฏิเสธ"
+                        && item.Status_Lamination.Status_Lamination != "ถูกปฏิเสธ" && item.Status_Lamination.Status_Lamination != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Lamination.Status_Lamination)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_Cut.Status_Cut == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cut.Status_Cut == "หยุด" || item.Status_Cut.Status_Cut == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cut.Status_Cut == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cut.Status_Cut == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cut.Status_Cut == "ปฏิเสธ" || item.Status_Cut.Status_Cut == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cut.Status_Cut == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cut.Status_Cut != "อยู่ในคิว" && item.Status_Cut.Status_Cut != "หยุด" && item.Status_Cut.Status_Cut != "หยุดชั่วคราว"
+                        && item.Status_Cut.Status_Cut != "กำลังผลิต" && item.Status_Cut.Status_Cut != "เสร็จ" && item.Status_Cut.Status_Cut != "ปฏิเสธ"
+                        && item.Status_Cut.Status_Cut != "ถูกปฏิเสธ" && item.Status_Cut.Status_Cut != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Cut.Status_Cut)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_EdgeBanding.Status_Edgebanding == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_EdgeBanding.Status_Edgebanding == "หยุด" || item.Status_EdgeBanding.Status_Edgebanding == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_EdgeBanding.Status_Edgebanding == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_EdgeBanding.Status_Edgebanding == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_EdgeBanding.Status_Edgebanding == "ปฏิเสธ" || item.Status_EdgeBanding.Status_Edgebanding == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_EdgeBanding.Status_Edgebanding == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_EdgeBanding.Status_Edgebanding != "อยู่ในคิว" && item.Status_EdgeBanding.Status_Edgebanding != "หยุด" && item.Status_EdgeBanding.Status_Edgebanding != "หยุดชั่วคราว"
+                        && item.Status_EdgeBanding.Status_Edgebanding != "กำลังผลิต" && item.Status_EdgeBanding.Status_Edgebanding != "เสร็จ" && item.Status_EdgeBanding.Status_Edgebanding != "ปฏิเสธ"
+                        && item.Status_EdgeBanding.Status_Edgebanding != "ถูกปฏิเสธ" && item.Status_EdgeBanding.Status_Edgebanding != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_EdgeBanding.Status_Edgebanding)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_Drill.Status_Drill == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill.Status_Drill == "หยุด" || item.Status_Drill.Status_Drill == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill.Status_Drill == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill.Status_Drill == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill.Status_Drill == "ปฏิเสธ" || item.Status_Drill.Status_Drill == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill.Status_Drill == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Drill.Status_Drill != "อยู่ในคิว" && item.Status_Drill.Status_Drill != "หยุด" && item.Status_Drill.Status_Drill != "หยุดชั่วคราว"
+                        && item.Status_Drill.Status_Drill != "กำลังผลิต" && item.Status_Drill.Status_Drill != "เสร็จ" && item.Status_Drill.Status_Drill != "ปฏิเสธ"
+                        && item.Status_Drill.Status_Drill != "ถูกปฏิเสธ" && item.Status_Drill.Status_Drill != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Drill.Status_Drill)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_Painting.Status_Painting == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Painting.Status_Painting == "หยุด" || item.Status_Painting.Status_Painting == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Painting.Status_Painting == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Painting.Status_Painting == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Painting.Status_Painting == "ปฏิเสธ" || item.Status_Painting.Status_Painting == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Painting.Status_Painting == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Painting.Status_Painting != "อยู่ในคิว" && item.Status_Painting.Status_Painting != "หยุด" && item.Status_Painting.Status_Painting != "หยุดชั่วคราว"
+                        && item.Status_Painting.Status_Painting != "กำลังผลิต" && item.Status_Painting.Status_Painting != "เสร็จ" && item.Status_Painting.Status_Painting != "ปฏิเสธ"
+                        && item.Status_Painting.Status_Painting != "ถูกปฏิเสธ" && item.Status_Painting.Status_Painting != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Painting.Status_Painting)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_Cleaning.Status_Cleaning == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cleaning.Status_Cleaning == "หยุด" || item.Status_Cleaning.Status_Cleaning == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cleaning.Status_Cleaning == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cleaning.Status_Cleaning == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cleaning.Status_Cleaning == "ปฏิเสธ" || item.Status_Cleaning.Status_Cleaning == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cleaning.Status_Cleaning == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Cleaning.Status_Cleaning != "อยู่ในคิว" && item.Status_Cleaning.Status_Cleaning != "หยุด" && item.Status_Cleaning.Status_Cleaning != "หยุดชั่วคราว"
+                        && item.Status_Cleaning.Status_Cleaning != "กำลังผลิต" && item.Status_Cleaning.Status_Cleaning != "เสร็จ" && item.Status_Cleaning.Status_Cleaning != "ปฏิเสธ"
+                        && item.Status_Cleaning.Status_Cleaning != "ถูกปฏิเสธ" && item.Status_Cleaning.Status_Cleaning != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Cleaning.Status_Cleaning)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_Packing.Status_Packing == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing.Status_Packing == "หยุด" || item.Status_Packing.Status_Packing == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing.Status_Packing == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing.Status_Packing == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing.Status_Packing == "ปฏิเสธ" || item.Status_Packing.Status_Packing == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing.Status_Packing == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing.Status_Packing != "อยู่ในคิว" && item.Status_Packing.Status_Packing != "หยุด" && item.Status_Packing.Status_Packing != "หยุดชั่วคราว"
+                        && item.Status_Packing.Status_Packing != "กำลังผลิต" && item.Status_Packing.Status_Packing != "เสร็จ" && item.Status_Packing.Status_Packing != "ปฏิเสธ"
+                        && item.Status_Cleaning.Status_Cleaning != "ถูกปฏิเสธ" && item.Status_Packing.Status_Packing != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Packing.Status_Packing)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_QC.Status_QC == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC.Status_QC == "หยุด" || item.Status_QC.Status_QC == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC.Status_QC == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC.Status_QC == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC.Status_QC == "ปฏิเสธ" || item.Status_QC.Status_QC == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC.Status_QC == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC.Status_QC != "อยู่ในคิว" && item.Status_QC.Status_QC != "หยุด" && item.Status_QC.Status_QC != "หยุดชั่วคราว"
+                        && item.Status_QC.Status_QC != "กำลังผลิต" && item.Status_QC.Status_QC != "เสร็จ" && item.Status_QC.Status_QC != "ปฏิเสธ"
+                        && item.Status_QC.Status_QC != "ถูกปฏิเสธ" && item.Status_QC.Status_QC != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_QC.Status_QC)
+                    }
+                </td>
+                <td>
+                    @if (item.Status_Pickup.Status_Pickup == "อยู่ในคิว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Pickup.Status_Pickup == "หยุด" || item.Status_Pickup.Status_Pickup == "หยุดชั่วคราว")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Pickup.Status_Pickup == "กำลังผลิต")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Pickup.Status_Pickup == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Pickup.Status_Pickup == "ปฏิเสธ" || item.Status_Pickup.Status_Pickup == "ถูกปฏิเสธ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Denine.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Pickup.Status_Pickup == "รอตรวจสอบ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Pickup.Status_Pickup != "อยู่ในคิว" && item.Status_Pickup.Status_Pickup != "หยุด" && item.Status_Pickup.Status_Pickup != "หยุดชั่วคราว"
+                        && item.Status_Pickup.Status_Pickup != "กำลังผลิต" && item.Status_Pickup.Status_Pickup != "เสร็จ" && item.Status_Pickup.Status_Pickup != "ปฏิเสธ"
+                        && item.Status_Pickup.Status_Pickup != "ถูกปฏิเสธ" && item.Status_Pickup.Status_Pickup != "รอตรวจสอบ")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status_Pickup.Status_Pickup)
+                    }
+                </td>
+                <td>
+                    @if (item.Urgent_Status == "0" && item.Status_AStation != "ยกเลิก")
+                    {
+                        @*@Html.ActionLink("Urgent", "Urgent", new { id = item.Id }) @Html.Label(" | ")*@
+                        <a href="@Url.Action("Urgent", new { id = item.Id })" title="งานเร่งด่วน" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/UrgentB.png")" width="25" height="25">
+                        </a>
+                    }
+                    @if (item.Urgent_Status == "1" && item.Status_AStation != "ยกเลิก")
+                    {
+                        <a href="@Url.Action("UnUrgent", new { id = item.Id })" title="งานเร่งด่วน" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/UrgentB.png")" width="25" height="25">
+                        </a>
+                    }
+                    @if (item.Check_PauseID == "0" && item.Status_AStation != "ยกเลิก")
+                    {
+                        <a href="@Url.Action("Pause", new { id = item.Id })" title="หยุดงาน" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/Pause.png")" width="25" height="25">
+                        </a>
+                    }
+                    @if (item.Check_PauseID == "1" && item.Status_AStation != "ยกเลิก")
+                    {
+                        <a href="@Url.Action("UnPause", new { id = item.Id })" title="เริ่มงาน" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/StartG.png")" width="25" height="25">
+                        </a>
+                    }
+                    @if (item.Status_AStation != "ยกเลิก" && item.Status_AStation != "อยู่ในคิว" && item.Status_AStation != "งานใหม่" && item.Status_AStation == "กำลังผลิต" || item.Status_AStation == "หยุด")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/BackGr.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination.Status_Show == "0" && item.Status_AStation != "ยกเลิก")
+                    {
+                        <a href="@Url.Action("ShowWork", new { id = item.Id })" title="ส่งไปโรงงาน" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/SendB.png")" width="25" height="25">
+                        </a>
+                        @*@Html.ActionLink("ส่งไปโรงงาน", "#", new { id = item.Id }, new { @data_toggle = "modal", @data_target = ".bootstrapmodal", @id = "@item.Id" })
+
+                        <div class="modal fade bootstrapmodal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-heaader">
+                                        <button data-dismiss="modal" class="close"><span>&times;</span></button>
+                                        <div class="modal-title">SBS</div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <center><h4>ยืนยันการส่ง?</h4></center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        @Html.ActionLink("ตกลง", "ShowWork", new { id = item.Id }, new { @class = "btn btn-success" })
+                                        <button class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>*@
+                    }
+                    @if (item.Status_Lamination.Status_Show == "1" && item.Status_AStation != "ยกเลิก" && item.Status_AStation != "กำลังผลิต" && item.Status_AStation != "หยุด")
+                    {
+                        <a href="@Url.Action("ShowWork", new { id = item.Id })" title="ดึงงานกลับ" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/BackY.png")" width="25" height="25">
+                        </a>
+                        @*@Html.ActionLink("ดึงงานกลับ", "#", new { id = item.Id }, new { @data_toggle = "modal", @data_target = ".bootstrapmodal" })
+
+                        <div class="modal fade bootstrapmodal" id="item.Id">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-heaader">
+                                    </div>
+                                    <div class="modal-body">
+                                        <center><h4>ยืนยันการดึงกลับ?</h4></center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        @Html.ActionLink("ตกลง", "ShowWork", new { id = item.Id }, new { @class = "btn btn-success" })
+                                        <button class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>*@
+                    }
+                    @if (item.Status_AStation != "ยกเลิก")
+                    {
+                        @*<a href="@Url.Action("Cancel", new { id = item.Id })" title="ยกเลิกงาน" class="links">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/CancelR.png")" width="25" height="25">
+                        </a>*@
+                        <a title="ยกเลิกงาน" data-toggle="modal" data-target="#tips-@item.Id" value="Tips">
+                            <img src="@Url.Content("~/Content/Images/StatusImage/CancelR.png")" width="25" height="25">
+                        </a>
+                        <div class="modal fade bootstrapmodal" id="tips-@item.Id" tabindex="-1" role="dialog" aria-labelledby="tipsLabel">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-heaader">
+                                        <a href="#" class="close" data-dismiss="modal">&times;</a>
+                                        <h4 id="ModalTitle"></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <from id="form">
+                                            <fieldset id="Submitform">
+                                                @using (Html.BeginForm("Cancel", "SubC2B", FormMethod.Get))
+                                                {
+                                                    @*@Html.HiddenFor(model => model.subc2b.Id, new { @id = "SId" })*@
+                                                    <div class="form-group">
+                                                        @Html.Hidden("IdSub",  item.Id )
+                                                        @Html.TextBox("reason", null, new { @class = "form-control block", @Style = "float: left; width: 200px;" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Save" class="btn btn-default" />
+                                                    </div>
+                                                }
+                                                @*@Html.HiddenFor(model => model.subc2b.Id, new { @id = "SId" })*@
+                                                @*<div class="form-group">
+                                                    @Html.EditorFor(model => model.subc2b.Cancel_Reason, new { htmlAttributes = new { @id = "CRId", @class = "form-control block", @placeholder = "เหตุผล" } })
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.ActionLink("Save", "Cancel", new { id = item.Id, reason = @Html.Editor("subc2b.Cancel_Reason") }, new { @class = "btn btn-block btn-danger", @type = "submit" })
+                                                </div>*@
+                                            </fieldset>
+                                        </from>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (item.Status_AStation == "ยกเลิก")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/UrgentG.png")" width="25" height="25">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/SendGr.png")" width="25" height="25">
+                        <img src="@Url.Content("~/Content/Images/StatusImage/CancelG.png")" width="25" height="25">
+                    }
+                    @*<input type="button" class="btn btn-default" data-toggle="modal" data-target="#tips-@item.Id" value="Tips" />
+
+                    <div class="modal fade bootstrapmodal" id="tips-@item.Id" tabindex="-1" role="dialog" aria-labelledby="tipsLabel">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-heaader">
+                                </div>
+                                <div class="modal-body">
+                                    <center><h4>ยืนยันการดึงกลับ?</h4></center>
+                                </div>
+                                <div class="modal-footer">
+                                    @Html.ActionLink("ตกลง", "ShowWork", new { id = item.Id }, new { @class = "btn btn-success" })
+                                    <button class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>*@
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+    
+<script>
+function myFunction() {
+   reason = document.getElementById("CPId").value
 }
-
-</table>
+</script>

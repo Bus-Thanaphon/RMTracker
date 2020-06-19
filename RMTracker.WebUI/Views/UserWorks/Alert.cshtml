@@ -1,0 +1,16 @@
+﻿@*@{
+    ViewBag.Title = "Alert";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+@Html.ActionLink("Create", "UserWorks")*@
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
+    if (showAlert === "True") {
+        alert(alertMessage);
+        window.location.href = "Create";
+    } else {
+        alert("Something wrong.");
+    }
+</script>
