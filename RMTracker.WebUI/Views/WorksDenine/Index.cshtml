@@ -1,0 +1,41 @@
+﻿@model IEnumerable<RMTracker.Core.Models.WorksDenine>
+
+<h2>
+    ปฏิเสธงาน
+</h2>
+@Html.ActionLink("ย้อนกลับ", null, null, null, new { href = Request.UrlReferrer })
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SONO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Station)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Other_Reason)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SONO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Station)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Other_Reason)
+            </td>
+        </tr>
+    }
+
+</table>

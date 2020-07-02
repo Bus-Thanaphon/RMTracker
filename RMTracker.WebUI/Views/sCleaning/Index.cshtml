@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RMTracker.Core.Models.s_Cleaning>
+﻿@model RMTracker.Core.ViewModels.DenineView
 
 @{
     ViewBag.Title = "Index";
@@ -16,140 +16,243 @@
                 @*@Html.DisplayNameFor(model => model.Special_status)*@
             </th>
             <th></th>
+
             <th>
-                @Html.DisplayNameFor(model => model.SubC2B)
+                @Html.DisplayNameFor(model => model.SCleanings.NameSale)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer)
+                @Html.DisplayNameFor(model => model.SCleanings.Customer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status_Cleaning)
+                @Html.DisplayNameFor(model => model.SCleanings.Status_Cleaning)
             </th>
             <th>
                 @Html.Label("ทำกี่แผ่น")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.SCleanings.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SCleanings.SubC2B)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SCleanings.Duedate)
             </th>
 
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.VCleanings)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Special_status)
-                </td>
-                <td>
-                    @if (item.Urgent_Status == "0")
-                    {
-                    }
-                    @if (item.Urgent_Status == "1")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/UrgentR.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "หยุด")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/salestop.png")" width="25" height="25">
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SubC2B)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer)
-                </td>
-                <td>
-                    @if (item.Status_Cleaning == "อยู่ในคิว")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "หยุด" || item.Status_Cleaning == "หยุดชั่วคราว")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "กำลังผลิต")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "เสร็จ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Finish.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "ปฏิเสธ" || item.Status_Cleaning == "ถูกปฏิเสธ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "รอตรวจสอบ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning != "อยู่ในคิว" && item.Status_Cleaning != "หยุด" && item.Status_Cleaning != "หยุดชั่วคราว"
-                        && item.Status_Cleaning != "กำลังผลิต" && item.Status_Cleaning != "เสร็จ" && item.Status_Cleaning != "ปฏิเสธ"
-                        && item.Status_Cleaning != "ถูกปฏิเสธ" && item.Status_Cleaning != "รอตรวจสอบ")
-                    {
-                        @Html.DisplayFor(modelItem => item.Status_Cleaning)
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User)
-                </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Special_status)
+        </td>
+        <td>
+            @if (item.Urgent_Status == "0")
+            {
+            }
+            @if (item.Urgent_Status == "1")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/UrgentR.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "หยุด")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/salestop.png")" width="25" height="25">
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubC2B)
+        </td>
 
-                <td>
-                    @if (item.Status_Cleaning == "อยู่ในคิว")
-                    {
-                        <a href="@Url.Action("Start", new { id = item.Id })" title="เริ่มงาน" class="links">
-                            <img src="@Url.Content("~/Content/Images/StatusImage/AcceptG.png")" width="25" height="25">
-                        </a>
-                        <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
-                        <a href="@Url.Action("Denine", new { id = item.Id })" title="ปฏิเสธ" class="links">
-                            <img src="@Url.Content("~/Content/Images/StatusImage/DenyR.png")" width="25" height="25">
-                        </a>
-                    }
-                    @if (item.Status_Cleaning == "หยุดชั่วคราว")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
-                        <a href="@Url.Action("UnPause", new { id = item.Id })" title="เริ่มงานต่อ" class="links">
-                            <img src="@Url.Content("~/Content/Images/StatusImage/Start.png")" width="25" height="25">
-                        </a>
-                        <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning == "รอตรวจสอบ" || item.Status_Cleaning == "ปฏิเสธ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
-                        <a href="@Url.Action("NewWork", new { id = item.Id })" title="เริ่มงานใหม่" class="links">
-                            <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
-                        </a>
-                    }
-                    @if (item.Status_Cleaning == "กำลังผลิต")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
-                        <a href="@Url.Action("Pause", new { id = item.Id })" title="หยุดชั่วคราว" class="links">
-                            <img src="@Url.Content("~/Content/Images/StatusImage/Pause.png")" width="25" height="25">
-                        </a>
-                        <a href="@Url.Action("Finish", new { id = item.Id })" title="เสร็จงาน" class="links">
-                            <img src="@Url.Content("~/Content/Images/StatusImage/Start_Station.png")" width="25" height="25">
-                        </a>
-                        <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
-                    }
-                    @if (item.Status_Cleaning != "กำลังผลิต" && item.Status_Cleaning != "อยู่ในคิว" && item.Status_Cleaning != "หยุดชั่วคราว" && item.Status_Cleaning != "ปฏิเสธ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
-                        <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
-                    }
-                </td>
-            </tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer)
+        </td>
+        <td>
+            @if (item.Status_Cleaning == "อยู่ในคิว")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/Queue.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "หยุด" || item.Status_Cleaning == "หยุดชั่วคราว")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/Stop.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "กำลังผลิต")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "เสร็จ")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/Finish.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "ปฏิเสธ" || item.Status_Cleaning == "ถูกปฏิเสธ")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "รอตรวจสอบ")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning != "อยู่ในคิว" && item.Status_Cleaning != "หยุด" && item.Status_Cleaning != "หยุดชั่วคราว"
+                && item.Status_Cleaning != "กำลังผลิต" && item.Status_Cleaning != "เสร็จ" && item.Status_Cleaning != "ปฏิเสธ"
+                && item.Status_Cleaning != "ถูกปฏิเสธ" && item.Status_Cleaning != "รอตรวจสอบ")
+            {
+                @Html.DisplayFor(modelItem => item.Status_Cleaning)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameSale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duedate)
+        </td>
+
+        <td>
+            @if (item.Status_Cleaning == "อยู่ในคิว")
+            {
+                <a href="@Url.Action("Start", new { id = item.Id })" title="เริ่มงาน" class="links">
+                    <img src="@Url.Content("~/Content/Images/StatusImage/AcceptG.png")" width="25" height="25">
+                </a>
+                <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
+                <a title="ยกเลิกงาน" data-toggle="modal" data-target="#tips-@item.Id" value="Tips">
+                    <img src="@Url.Content("~/Content/Images/StatusImage/DenyR.png")" width="25" height="25">
+                </a>
+                <div class="modal fade" id="tips-@item.Id" tabindex="-1" role="dialog" aria-labelledby="tipsLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                                <h4 id="ModalTitle"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <center><h4>ปฏิเสธงาน</h4></center>
+                                <from id="form">
+                                    <fieldset id="Submitform">
+                                        @using (Html.BeginForm("Denine", "sCleaning", FormMethod.Get))
+                                        {
+                                            <center>
+                                                @Html.Hidden("Id", item.Id)
+                                                <div class="form-group" style="text-align: center;">
+                                                    @Html.DropDownListFor(Model => Model.WorksDenine.Reason, new SelectList(Model.WorksDenine.Reason_List, "Reason", "Reason"), new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.EditorFor(Model => Model.WorksDenine.Other_Reason, new { htmlAttributes = new { @class = "form-control", @id = "txtsearch", @placeholder = "อื่นๆ", @style = "text-align: center" } })
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" value="ยืนยัน" class="btn btn-block btn-danger" />
+                                                </div>
+                                            </center>
+                                        }
+                                    </fieldset>
+                                </from>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (item.Status_Cleaning == "หยุดชั่วคราว")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
+                <a href="@Url.Action("UnPause", new { id = item.Id })" title="เริ่มงานต่อ" class="links">
+                    <img src="@Url.Content("~/Content/Images/StatusImage/Start.png")" width="25" height="25">
+                </a>
+                <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning == "รอตรวจสอบ" || item.Status_Cleaning == "ปฏิเสธ")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
+                <a href="@Url.Action("NewWork", new { id = item.Id })" title="เริ่มงานใหม่" class="links">
+                    <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                </a>
+            }
+            @if (item.Status_Cleaning == "กำลังผลิต")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
+                <a title="หยุดชั่วคราว" data-toggle="modal" data-target="#tips2-@item.Id" value="Tips">
+                    <img src="@Url.Content("~/Content/Images/StatusImage/Pause.png")" width="25" height="25">
+                </a>
+                <div class="modal fade" id="tips2-@item.Id" tabindex="-1" role="dialog" aria-labelledby="tipsLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                                <h4 id="ModalTitle"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <center><h4>หยุดชั่วคราว</h4></center>
+                                <from id="form">
+                                    <fieldset id="Submitform">
+                                        @using (Html.BeginForm("Pause", "sCleaning", FormMethod.Get))
+                                        {
+                                            <center>
+                                                @Html.Hidden("Id", item.Id)
+                                                <div class="form-group" style="text-align: center;">
+                                                    @Html.DropDownListFor(Model => Model.WorksPause.Reason, new SelectList(Model.WorksPause.Reason_List, "Reason", "Reason"), new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.EditorFor(Model => Model.WorksPause.Other_Reason, new { htmlAttributes = new { @class = "form-control", @id = "txtsearch", @placeholder = "อื่นๆ", @style = "text-align: center" } })
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" value="ยืนยัน" class="btn btn-block btn-danger" />
+                                                </div>
+                                            </center>
+                                        }
+                                    </fieldset>
+                                </from>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a title="เสร็จงาน" data-toggle="modal" data-target="#tips3-@item.Id" value="Tips">
+                    <img src="@Url.Content("~/Content/Images/StatusImage/Start_Station.png")" width="25" height="25">
+                </a>
+                <div class="modal fade" id="tips3-@item.Id" tabindex="-1" role="dialog" aria-labelledby="tipsLabel">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-heaader">
+                                <h4 id="ModalTitle"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <center><h4>เสร็จงาน</h4></center>
+                                <from id="form">
+                                    <fieldset id="Submitform">
+                                        @using (Html.BeginForm("Pause", "sCleaning", FormMethod.Get))
+                                        {
+                                            <center>
+                                                @Html.Hidden("Id", item.Id)
+                                                <div class="form-group">
+                                                    @Html.ActionLink("ยืนยัน", "Finish", new { id = item.Id }, new { @class = "btn btn-button btn-success buttonsize" })
+                                                    <input data-dismiss="modal" value="ยกเลิก" class="btn btn-button btn-danger buttonsize" />
+
+                                                </div>
+                                            </center>
+                                        }
+                                    </fieldset>
+                                </from>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
+            }
+            @if (item.Status_Cleaning != "กำลังผลิต" && item.Status_Cleaning != "อยู่ในคิว" && item.Status_Cleaning != "หยุดชั่วคราว" && item.Status_Cleaning != "ปฏิเสธ")
+            {
+                <img src="@Url.Content("~/Content/Images/StatusImage/AcceptGr.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/PauseG.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/FinishG.png")" width="25" height="25">
+                <img src="@Url.Content("~/Content/Images/StatusImage/DenyG.png")" width="25" height="25">
+            }
+        </td>
+    </tr>
         }
     </table>
 </div>
-    
+

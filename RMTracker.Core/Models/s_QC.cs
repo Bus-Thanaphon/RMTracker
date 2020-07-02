@@ -34,5 +34,9 @@ namespace RMTracker.Core.Models
         public string Denine_Check { get; set; }
         [DisplayName("ชื่อลูกค้า")]
         public string Customer { get; set; }
+        [DisplayName("วันรับของ")]
+        public string Duedate { get; set; }
+        [DisplayName("ชื่อเซลล์")]
+        public string NameSale { get; set; }
     }
 }

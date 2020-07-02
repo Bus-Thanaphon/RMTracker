@@ -309,6 +309,14 @@
     <Compile Include="Migrations\202006130710412_db63.designer.cs">
       <DependentUpon>202006130710412_db63.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007020425079_db64.cs" />
+    <Compile Include="Migrations\202007020425079_db64.designer.cs">
+      <DependentUpon>202007020425079_db64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007020602032_db65.cs" />
+    <Compile Include="Migrations\202007020602032_db65.designer.cs">
+      <DependentUpon>202007020602032_db65.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -517,6 +525,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006130710412_db63.resx">
       <DependentUpon>202006130710412_db63.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007020425079_db64.resx">
+      <DependentUpon>202007020425079_db64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007020602032_db65.resx">
+      <DependentUpon>202007020602032_db65.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

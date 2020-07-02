@@ -63,13 +63,24 @@ namespace RMTracker.WebUI.Controllers
                     return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
-            List<s_Pickup> spickup = SPickups.Collection().Where(o => o.C2BNo != null && o.Status_Pickup != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
-            return View(spickup);
+            var model = new DenineView();
+            model.VPickups = SPickups.Collection().Where(o => o.C2BNo != null && o.Status_Pickup != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
+            model.SPickups = SPickups.Find(Id);
+            model.WorksPause = new WorksPause();
+            model.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "จัดส่ง");
+            model.WorksDenine = new WorksDenine();
+            model.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "จัดส่ง");
+            return View(model);
         }
-        public ActionResult IndexSale()
+        public ActionResult IndexSale(string Id)
         {
+            if (Id != null)
+            {
+                List<s_Pickup> sapickup = SPickups.Collection().Where(o => o.Id == Id).ToList();
+                return View(sapickup);
+            }
             List<s_Pickup> spickup = SPickups.Collection().Where(o => o.C2BNo != null && o.Status_Pickup != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
             return View(spickup);
         }
@@ -110,25 +121,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Pause(string Id)
-        {
-            s_Pickup Pause = SPickups.Find(Id);
-            if (Pause == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Pause(string Id)
+        //{
+        //    s_Pickup Pause = SPickups.Find(Id);
+        //    if (Pause == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SPickups = new s_Pickup();
-                viewModel.WorksPause = new WorksPause();
-                viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "จัดส่ง");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SPickups = new s_Pickup();
+        //        viewModel.WorksPause = new WorksPause();
+        //        viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "จัดส่ง");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Pause(string Id, WorksPause wpc, DenineView Pw)
         {
             s_Pickup PickPause = SPickups.Find(Id);
@@ -196,25 +207,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Denine(string Id)
-        {
-            s_Pickup Denine = SPickups.Find(Id);
-            if (Denine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Denine(string Id)
+        //{
+        //    s_Pickup Denine = SPickups.Find(Id);
+        //    if (Denine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SPickups = new s_Pickup();
-                viewModel.WorksDenine = new WorksDenine();
-                viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "จัดส่ง");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SPickups = new s_Pickup();
+        //        viewModel.WorksDenine = new WorksDenine();
+        //        viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "จัดส่ง");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Denine(string Id, string lamis, WorksDenine wdc, DenineView dnw)
         {
             s_Pickup Denine = SPickups.Find(Id);
@@ -269,20 +280,20 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Finish(string Id)
-        {
-            s_Pickup pickAccept = SPickups.Find(Id);
-            if (pickAccept == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(pickAccept);
-            }
-        }
-        [HttpPost]
-        public ActionResult Finish(s_Pickup pickup, string Id, string idupdate,string oderupdate)
+        //public ActionResult Finish(string Id)
+        //{
+        //    s_Pickup pickAccept = SPickups.Find(Id);
+        //    if (pickAccept == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        return View(pickAccept);
+        //    }
+        //}
+        //[HttpPost]
+        public ActionResult Finish(s_Pickup pickup, string Id, string idupdate, string oderupdate)
         {
             s_Pickup pickAccept = SPickups.Find(Id);
             idupdate = pickAccept.Id_Pickup;

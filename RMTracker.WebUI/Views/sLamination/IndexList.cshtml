@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RMTracker.Core.Models.s_Lamination>
+﻿@model RMTracker.Core.ViewModels.DenineView
 
 @{
     ViewBag.Title = "Index";
@@ -7,6 +7,7 @@
 <h2>งานปิดผิว</h2>
 
 <p>
+    @Html.ActionLink("กลับสู่หน้าหลัก", "Index", "SubC2B", null, new { Id = Model.SLaminations.Id })
     @Html.ActionLink("ย้อนกลับ", null, null, null, new { href = Request.UrlReferrer })
 </p>
 <div class="table-responsive">
@@ -17,27 +18,27 @@
             </th>
             <th> </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubC2B)
+                @Html.DisplayNameFor(model => model.SLaminations.SubC2B)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer)
+                @Html.DisplayNameFor(model => model.SLaminations.Customer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status_Lamination)
+                @Html.DisplayNameFor(model => model.SLaminations.Status_Lamination)
             </th>
             <th>
                 @Html.Label("ปิดกี่หน้า")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.SLaminations.User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Machine_Lamination)
+                @Html.DisplayNameFor(model => model.SLaminations.Machine_Lamination)
             </th>
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.VLaminations)
         {
             <tr>
                 <td>
@@ -74,6 +75,10 @@
                     @if (item.Status_Lamination == "กำลังผลิต")
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Lamination == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/Finish.png")" width="25" height="25">
                     }
                     @if (item.Status_Lamination == "ปฏิเสธ" || item.Status_Lamination == "ปฏิเสธ")
                     {
@@ -123,5 +128,6 @@
                 </td>
             </tr>
         }
-</div>
     </table>
+</div>
+

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace RMTracker.WebUI.Controllers
 {
+    //[Authorize(Roles ="Admin")]
     public class sLaminationController : Controller
     {
         IRepository<UserList> UserLists;
@@ -63,19 +64,37 @@ namespace RMTracker.WebUI.Controllers
                     return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
+            var model = new DenineView();
+            model.VLaminations = SLaminations.Collection().Where(o => o.C2BNo != null && o.Status_Lamination != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
+            model.SLaminations = SLaminations.Find(Id);
+            model.WorksPause = new WorksPause();
+            model.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดผิว");
+            model.WorksDenine = new WorksDenine();
+            model.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดผิว");
+            return View(model);
+        }
+        public ActionResult IndexSale(string Id)
+        {
+            if (Id != null)
+            {
+                List<s_Lamination> salamination = SLaminations.Collection().Where(o => o.Id == Id).ToList();
+                return View(salamination);
+            }
             List<s_Lamination> slamination = SLaminations.Collection().Where(o => o.C2BNo != null && o.Status_Lamination != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
             return View(slamination);
         }
-        public ActionResult IndexSale()
+        public ActionResult IndexList(string Id)
         {
-            List<s_Lamination> slamination = SLaminations.Collection().Where(o => o.C2BNo != null && o.Status_Lamination != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
-            return View(slamination);
+            var model = new DenineView();
+            model.VLaminations = SLaminations.Collection().Where(o => o.Id == Id).ToList();
+            model.SLaminations = SLaminations.Find(Id);
+            return View(model);
         }
         public ActionResult Start(string Id)
         {
-            s_Lamination Laminationstart= SLaminations.Find(Id);
+            s_Lamination Laminationstart = SLaminations.Find(Id);
             if (Laminationstart == null)
             {
                 return HttpNotFound();
@@ -115,25 +134,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Denine(string Id)
-        {
-            s_Lamination LamiDenine = SLaminations.Find(Id);
-            if (LamiDenine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Denine(string Id)
+        //{
+        //    s_Lamination LamiDenine = SLaminations.Find(Id);
+        //    if (LamiDenine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SLaminations = new s_Lamination();
-                viewModel.WorksDenine = new WorksDenine();
-                viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดผิว");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SLaminations = new s_Lamination();
+        //        viewModel.WorksDenine = new WorksDenine();
+        //        viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดผิว");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Denine(string Id, string lamis, WorksDenine wdc, DenineView dnw)
         {
             s_Lamination LamiDenine = SLaminations.Find(Id);
@@ -184,25 +203,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Pause(string Id)
-        {
-            s_Lamination LamiDenine = SLaminations.Find(Id);
-            if (LamiDenine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Pause(string Id)
+        //{
+        //    s_Lamination LamiDenine = SLaminations.Find(Id);
+        //    if (LamiDenine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SLaminations = new s_Lamination();
-                viewModel.WorksPause = new WorksPause();
-                viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดผิว");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SLaminations = new s_Lamination();
+        //        viewModel.WorksPause = new WorksPause();
+        //        viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดผิว");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Pause(string Id, WorksPause wpc, DenineView Pw)
         {
             s_Lamination LaminationPause = SLaminations.Find(Id);
@@ -270,20 +289,20 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Finish(string Id)
-        {
-            s_Lamination laminationAccept = SLaminations.Find(Id);
-            if (laminationAccept == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(laminationAccept);
-            }
-        }
-        [HttpPost]
-        public ActionResult Finish(s_Lamination lamination, string Id,string idupdate,string cutu,string edgeu, string drillu, string paintu, string cleanu, string packu, string qcu, string picku)
+        //public ActionResult Finish(string Id)
+        //{
+        //    s_Lamination laminationAccept = SLaminations.Find(Id);
+        //    if (laminationAccept == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        return View(laminationAccept);
+        //    }
+        //}
+        //[HttpPost]
+        public ActionResult Finish(s_Lamination lamination, string Id, string idupdate, string cutu, string edgeu, string drillu, string paintu, string cleanu, string packu, string qcu, string picku)
         {
             s_Lamination laminationAccept = SLaminations.Find(Id);
             idupdate = laminationAccept.Id_lamination;
@@ -346,7 +365,7 @@ namespace RMTracker.WebUI.Controllers
                         edgeAccept.Status_Edgebanding = inqueue;
                     }
                 }
-                if(drillAccept.Status_Drill != null)
+                if (drillAccept.Status_Drill != null)
                 {
                     if (edgeAccept.Status_Edgebanding != null && edgeAccept.Status_Edgebanding == "อยู่ในคิว")
                     {
@@ -437,7 +456,7 @@ namespace RMTracker.WebUI.Controllers
                     {
                         qcAccept.Status_QC = wait7;
                     }
-                    else if(cleanAccept.Status_Cleaning != null && cleanAccept.Status_Cleaning == "อยู่ในคิว")
+                    else if (cleanAccept.Status_Cleaning != null && cleanAccept.Status_Cleaning == "อยู่ในคิว")
                     {
                         qcAccept.Status_QC = wait6;
                     }
@@ -468,7 +487,7 @@ namespace RMTracker.WebUI.Controllers
                     {
                         pickAccept.Status_Pickup = wait8;
                     }
-                    else if(packAccept.Status_Packing != null && packAccept.Status_Packing == "อยู่ในคิว")
+                    else if (packAccept.Status_Packing != null && packAccept.Status_Packing == "อยู่ในคิว")
                     {
                         pickAccept.Status_Pickup = wait7;
                     }
@@ -522,12 +541,12 @@ namespace RMTracker.WebUI.Controllers
             }
             else
             {
-                Laminationadd.User_Station = UserLists.Collection().Where(o => o.Department1=="เจ้าหน้าที่"|| o.Department2 == "เจ้าหน้าที่" || o.Department3 == "เจ้าหน้าที่");
+                Laminationadd.User_Station = UserLists.Collection().Where(o => o.Department1 == "เจ้าหน้าที่" || o.Department2 == "เจ้าหน้าที่" || o.Department3 == "เจ้าหน้าที่");
                 return View(Laminationadd);
             }
         }
         [HttpPost]
-        public ActionResult AddData(string Id,s_Lamination Laminations)
+        public ActionResult AddData(string Id, s_Lamination Laminations)
         {
             s_Lamination Laminationadd = SLaminations.Find(Id);
 
@@ -563,7 +582,7 @@ namespace RMTracker.WebUI.Controllers
         }
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult ConfirmDelete(string Id,string Id_lamination)
+        public ActionResult ConfirmDelete(string Id, string Id_lamination)
         {
             s_Lamination slaminationToDelete = SLaminations.Find(Id);
             if (slaminationToDelete == null)

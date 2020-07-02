@@ -61,13 +61,24 @@ namespace RMTracker.WebUI.Controllers
                     return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
-            List<s_Cleaning> scleaning = SCleanings.Collection().Where(o => o.C2BNo != null && o.Status_Cleaning != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenByDescending(x => x.CreateAt).ToList();
-            return View(scleaning);
+            var model = new DenineView();
+            model.VCleanings = SCleanings.Collection().Where(o => o.C2BNo != null && o.Status_Cleaning != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
+            model.SCleanings = SCleanings.Find(Id);
+            model.WorksPause = new WorksPause();
+            model.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำความสะอาด");
+            model.WorksDenine = new WorksDenine();
+            model.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำความสะอาด");
+            return View(model);
         }
-        public ActionResult IndexSale()
+        public ActionResult IndexSale(string Id)
         {
+            if (Id != null)
+            {
+                List<s_Cleaning> sacleaning = SCleanings.Collection().Where(o => o.Id == Id).ToList();
+                return View(sacleaning);
+            }
             List<s_Cleaning> scleaning = SCleanings.Collection().Where(o => o.C2BNo != null && o.Status_Cleaning != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenByDescending(x => x.CreateAt).ToList();
             return View(scleaning);
         }
@@ -110,25 +121,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Pause(string Id)
-        {
-            s_Cleaning Pause = SCleanings.Find(Id);
-            if (Pause == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Pause(string Id)
+        //{
+        //    s_Cleaning Pause = SCleanings.Find(Id);
+        //    if (Pause == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SCleanings = new s_Cleaning();
-                viewModel.WorksPause = new WorksPause();
-                viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำความสะอาด");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SCleanings = new s_Cleaning();
+        //        viewModel.WorksPause = new WorksPause();
+        //        viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำความสะอาด");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Pause(string Id, WorksPause wpc, DenineView Pw)
         {
             s_Cleaning CleanPause = SCleanings.Find(Id);
@@ -196,25 +207,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Denine(string Id)
-        {
-            s_Cleaning Denine = SCleanings.Find(Id);
-            if (Denine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Denine(string Id)
+        //{
+        //    s_Cleaning Denine = SCleanings.Find(Id);
+        //    if (Denine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SCleanings = new s_Cleaning();
-                viewModel.WorksDenine = new WorksDenine();
-                viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำความสะอาด");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SCleanings = new s_Cleaning();
+        //        viewModel.WorksDenine = new WorksDenine();
+        //        viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำความสะอาด");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Denine(string Id, string lamis, WorksDenine wdc, DenineView dnw)
         {
             s_Cleaning Denine = SCleanings.Find(Id);
@@ -311,19 +322,19 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Finish(string Id)
-        {
-            s_Cleaning cleanAccept = SCleanings.Find(Id);
-            if (cleanAccept == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(cleanAccept);
-            }
-        }
-        [HttpPost]
+        //public ActionResult Finish(string Id)
+        //{
+        //    s_Cleaning cleanAccept = SCleanings.Find(Id);
+        //    if (cleanAccept == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        return View(cleanAccept);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Finish(s_Painting painting, string Id, string idupdate, string cleanu, string packu, string qcu, string picku)
         {
             s_Cleaning cleanAccept = SCleanings.Find(Id);

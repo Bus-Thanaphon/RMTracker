@@ -28,7 +28,7 @@ namespace RMTracker.WebUI.Controllers
         IRepository<ReasonDenine> ReasonDenines;
         IRepository<ReasonPause> ReasonPauses;
 
-        public sPaintingController(IRepository<ReasonDenine> Reasondcontext, IRepository<ReasonPause> Reasonpcontext,IRepository<s_Lamination> laminationcontext, IRepository<s_Cut> cutcontext, IRepository<s_Edgebanding> edgebandingcontext, IRepository<Sub_C2B> SubC2Bcontext,
+        public sPaintingController(IRepository<ReasonDenine> Reasondcontext, IRepository<ReasonPause> Reasonpcontext, IRepository<s_Lamination> laminationcontext, IRepository<s_Cut> cutcontext, IRepository<s_Edgebanding> edgebandingcontext, IRepository<Sub_C2B> SubC2Bcontext,
             IRepository<s_Drill> drillcontext, IRepository<s_Painting> paintingcontext, IRepository<s_Cleaning> cleaningcontext
             , IRepository<s_Packing> packingcontext, IRepository<s_QC> qccontext, IRepository<s_Pickup> pickupcontext, IRepository<UserList> userlcon, IRepository<WorksPause> wpcontext, IRepository<WorksDenine> worksdeninecontext)
         {
@@ -61,13 +61,24 @@ namespace RMTracker.WebUI.Controllers
                     return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
-            List<s_Painting> spainting = SPaintings.Collection().Where(o => o.C2BNo != null && o.Status_Painting != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
-            return View(spainting);
+            var model = new DenineView();
+            model.VPaintings = SPaintings.Collection().Where(o => o.C2BNo != null && o.Status_Painting != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
+            model.SPaintings = SPaintings.Find(Id);
+            model.WorksPause = new WorksPause();
+            model.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำสี");
+            model.WorksDenine = new WorksDenine();
+            model.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำสี");
+            return View(model);
         }
-        public ActionResult IndexSale()
+        public ActionResult IndexSale(string Id)
         {
+            if (Id != null)
+            {
+                List<s_Painting> sapainting = SPaintings.Collection().Where(o => o.Id == Id).ToList();
+                return View(sapainting);
+            }
             List<s_Painting> spainting = SPaintings.Collection().Where(o => o.C2BNo != null && o.Status_Painting != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
             return View(spainting);
         }
@@ -110,25 +121,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Pause(string Id)
-        {
-            s_Painting LamiDenine = SPaintings.Find(Id);
-            if (LamiDenine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Pause(string Id)
+        //{
+        //    s_Painting LamiDenine = SPaintings.Find(Id);
+        //    if (LamiDenine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SPaintings = new s_Painting();
-                viewModel.WorksPause = new WorksPause();
-                viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำสี");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SPaintings = new s_Painting();
+        //        viewModel.WorksPause = new WorksPause();
+        //        viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำสี");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Pause(string Id, WorksPause wpc, DenineView Pw)
         {
             s_Painting PaintPause = SPaintings.Find(Id);
@@ -196,25 +207,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Denine(string Id)
-        {
-            s_Painting Denine = SPaintings.Find(Id);
-            if (Denine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Denine(string Id)
+        //{
+        //    s_Painting Denine = SPaintings.Find(Id);
+        //    if (Denine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SCuts = new s_Cut();
-                viewModel.WorksDenine = new WorksDenine();
-                viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำสี");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SCuts = new s_Cut();
+        //        viewModel.WorksDenine = new WorksDenine();
+        //        viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ทำสี");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Denine(string Id, string lamis, WorksDenine wdc, DenineView dnw)
         {
             s_Painting Denine = SPaintings.Find(Id);
@@ -269,19 +280,19 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Finish(string Id)
-        {
-            s_Painting paintingAccept = SPaintings.Find(Id);
-            if (paintingAccept == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(paintingAccept);
-            }
-        }
-        [HttpPost]
+        //public ActionResult Finish(string Id)
+        //{
+        //    s_Painting paintingAccept = SPaintings.Find(Id);
+        //    if (paintingAccept == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        return View(paintingAccept);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Finish(s_Painting painting, string Id, string idupdate, string cleanu, string packu, string qcu, string picku)
         {
             s_Painting paintingAccept = SPaintings.Find(Id);
@@ -367,7 +378,7 @@ namespace RMTracker.WebUI.Controllers
                         pickAccept.Status_Pickup = inqueue;
                     }
                 }
-                
+
                 Subc2bs.Commit();
                 SPaintings.Commit();
                 SCleanings.Commit();

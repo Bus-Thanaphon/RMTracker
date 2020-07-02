@@ -63,13 +63,24 @@ namespace RMTracker.WebUI.Controllers
                     return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
-            List<s_Edgebanding> sedgebanding = SEdgebandings.Collection().Where(o => o.C2BNo != null && o.Status_Edgebanding != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
-            return View(sedgebanding);
+            var model = new DenineView();
+            model.VEdgebandings = SEdgebandings.Collection().Where(o => o.C2BNo != null && o.Status_Edgebanding != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
+            model.SEdgebandings = SEdgebandings.Find(Id);
+            model.WorksPause = new WorksPause();
+            model.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดขอบ");
+            model.WorksDenine = new WorksDenine();
+            model.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดขอบ");
+            return View(model);
         }
-        public ActionResult IndexSale()
+        public ActionResult IndexSale(string Id)
         {
+            if (Id != null)
+            {
+                List<s_Edgebanding> saedgebanding = SEdgebandings.Collection().Where(o => o.Id == Id).ToList();
+                return View(saedgebanding);
+            }
             List<s_Edgebanding> sedgebanding = SEdgebandings.Collection().Where(o => o.C2BNo != null && o.Status_Edgebanding != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
             return View(sedgebanding);
         }
@@ -116,25 +127,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Pause(string Id)
-        {
-            s_Edgebanding Pause = SEdgebandings.Find(Id);
-            if (Pause == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Pause(string Id)
+        //{
+        //    s_Edgebanding Pause = SEdgebandings.Find(Id);
+        //    if (Pause == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SEdgebandings = new s_Edgebanding();
-                viewModel.WorksPause = new WorksPause();
-                viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดขอบ");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SEdgebandings = new s_Edgebanding();
+        //        viewModel.WorksPause = new WorksPause();
+        //        viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดขอบ");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Pause(string Id, WorksPause wpc, DenineView Pw)
         {
             s_Edgebanding EdgePause = SEdgebandings.Find(Id);
@@ -206,25 +217,25 @@ namespace RMTracker.WebUI.Controllers
         {
             return View();
         }
-        public ActionResult Denine(string Id)
-        {
-            s_Edgebanding EdgeDenine = SEdgebandings.Find(Id);
-            if (EdgeDenine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Denine(string Id)
+        //{
+        //    s_Edgebanding EdgeDenine = SEdgebandings.Find(Id);
+        //    if (EdgeDenine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SEdgebandings = new s_Edgebanding();
-                viewModel.WorksDenine = new WorksDenine();
-                viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดขอบ");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SEdgebandings = new s_Edgebanding();
+        //        viewModel.WorksDenine = new WorksDenine();
+        //        viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ปิดขอบ");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Denine(string Id, string lamis, WorksDenine wdc, DenineView dnw)
         {
             s_Edgebanding EdgeDenine = SEdgebandings.Find(Id);
@@ -275,19 +286,19 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Finish(string Id)
-        {
-            s_Edgebanding edgebandingAccept = SEdgebandings.Find(Id);
-            if (edgebandingAccept == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(edgebandingAccept);
-            }
-        }
-        [HttpPost]
+        //public ActionResult Finish(string Id)
+        //{
+        //    s_Edgebanding edgebandingAccept = SEdgebandings.Find(Id);
+        //    if (edgebandingAccept == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        return View(edgebandingAccept);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Finish(s_Edgebanding edgebanding, string Id, string idupdate, string drillu, string paintu, string cleanu, string packu, string qcu, string picku)
         {
             s_Edgebanding edgeAccept = SEdgebandings.Find(Id);

@@ -240,6 +240,8 @@ namespace RMTracker.WebUI.Controllers
                         slaminations.SubC2B = subc2bs.SubC2B;
                         slaminations.Status_Lamination = "อยู่ในคิว";
                         slaminations.Id_lamination = subc2bs.Id;
+                        slaminations.Duedate = userwToEdit.Comment;
+                        slaminations.NameSale = userwToEdit.Name_Sale;
                         slaminations.Status_Show = "0";
                         slaminations.Status_Check = subc2bs.CheckBoxLamination;
                         slaminations.Customer = userwToEdit.Customer;
@@ -272,6 +274,8 @@ namespace RMTracker.WebUI.Controllers
                             scuts.Status_Cut = "อยู่ในคิว";
                         }
                         scuts.Id_Cut = subc2bs.Id;
+                        scuts.Duedate = userwToEdit.Comment;
+                        scuts.NameSale = userwToEdit.Name_Sale;
                         scuts.Status_Show = "0";
                         scuts.Status_Check = subc2bs.CheckBoxCut;
                         scuts.Customer = userwToEdit.Customer;
@@ -309,6 +313,8 @@ namespace RMTracker.WebUI.Controllers
                         }
                         sedgebandings.Id_Edgebanding = subc2bs.Id;
                         sedgebandings.Status_Show = "0";
+                        sedgebandings.Duedate = userwToEdit.Comment;
+                        sedgebandings.NameSale = userwToEdit.Name_Sale;
                         sedgebandings.Status_Check = subc2bs.CheckBoxEdgeBanding;
                         sedgebandings.Customer = userwToEdit.Customer;
                         SEdgebandings.Commit();
@@ -348,6 +354,8 @@ namespace RMTracker.WebUI.Controllers
                             sdrills.Status_Drill = "อยู่ในคิว";
                         }
                         sdrills.Id_Drill = subc2bs.Id;
+                        sdrills.Duedate = userwToEdit.Comment;
+                        sdrills.NameSale = userwToEdit.Name_Sale;
                         sdrills.Status_Show = "0";
                         sdrills.Status_Check = subc2bs.CheckBoxDrill;
                         sdrills.Customer = userwToEdit.Customer;
@@ -392,6 +400,8 @@ namespace RMTracker.WebUI.Controllers
                             spaintings.Status_Painting = "อยู่ในคิว";
                         }
                         spaintings.Id_Painting = subc2bs.Id;
+                        spaintings.Duedate = userwToEdit.Comment;
+                        spaintings.NameSale = userwToEdit.Name_Sale;
                         spaintings.Status_Show = "0";
                         spaintings.Status_Check = subc2bs.CheckBoxPainting;
                         spaintings.Customer = userwToEdit.Customer;
@@ -440,6 +450,8 @@ namespace RMTracker.WebUI.Controllers
                             scleanings.Status_Cleaning = "อยู่ในคิว";
                         }
                         scleanings.Id_Cleaning = subc2bs.Id;
+                        scleanings.Duedate = userwToEdit.Comment;
+                        scleanings.NameSale = userwToEdit.Name_Sale;
                         scleanings.Status_Show = "0";
                         scleanings.Status_Check = subc2bs.CheckBoxCleaning;
                         scleanings.Customer = userwToEdit.Customer;
@@ -492,6 +504,8 @@ namespace RMTracker.WebUI.Controllers
                             spackings.Status_Packing = "อยู่ในคิว";
                         }
                         spackings.Id_Packing = subc2bs.Id;
+                        spackings.Duedate = userwToEdit.Comment;
+                        spackings.NameSale = userwToEdit.Name_Sale;
                         spackings.Status_Show = "0";
                         spackings.Status_Check = subc2bs.CheckBoxPacking;
                         spackings.Customer = userwToEdit.Customer;
@@ -548,6 +562,8 @@ namespace RMTracker.WebUI.Controllers
                             sqcs.Status_QC = "อยู่ในคิว";
                         }
                         sqcs.Id_QC = subc2bs.Id;
+                        sqcs.Duedate = userwToEdit.Comment;
+                        sqcs.NameSale = userwToEdit.Name_Sale;
                         sqcs.Status_Show = "0";
                         sqcs.Status_Check = subc2bs.CheckBoxQC;
                         sqcs.Customer = userwToEdit.Customer;
@@ -608,6 +624,8 @@ namespace RMTracker.WebUI.Controllers
                             spickups.Status_Pickup = "อยู่ในคิว";
                         }
                         spickups.Id_Pickup = subc2bs.Id;
+                        spickups.Duedate = userwToEdit.Comment;
+                        spickups.NameSale = userwToEdit.Name_Sale;
                         spickups.Status_Show = "0";
                         spickups.Status_Check = subc2bs.CheckBoxPickup;
                         spickups.Customer = userwToEdit.Customer;

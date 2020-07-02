@@ -3,7 +3,7 @@
 <h2>งานQC</h2>
 
 <p>
-    @Html.ActionLink("กลับสู่หน้าหลัก", "Index", "UserWorks")
+    @Html.ActionLink("ย้อนกลับ", null, null, null, new { href = Request.UrlReferrer })
 </p>
 <div class="table-responsive">
     <table class="table">
@@ -62,10 +62,6 @@
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
                     }
-                    @if (item.Status_QC == "เสร็จ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Finish.png")" width="25" height="25">
-                    }
                     @if (item.Status_QC == "ปฏิเสธ" || item.Status_QC == "ถูกปฏิเสธ")
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" width="25" height="25">
@@ -73,6 +69,10 @@
                     @if (item.Status_QC == "รอตรวจสอบ")
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_QC == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
                     }
                     @if (item.Status_QC != "อยู่ในคิว" && item.Status_QC != "หยุด" && item.Status_QC != "หยุดชั่วคราว"
                         && item.Status_QC != "กำลังผลิต" && item.Status_QC != "เสร็จ" && item.Status_QC != "ปฏิเสธ"

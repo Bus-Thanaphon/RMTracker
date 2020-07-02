@@ -61,13 +61,24 @@ namespace RMTracker.WebUI.Controllers
                     return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
-            List<s_Cut> scut = SCuts.Collection().Where(o => o.C2BNo != null && o.Status_Cut != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
-            return View(scut);
+            var model = new DenineView();
+            model.VCuts = SCuts.Collection().Where(o => o.C2BNo != null && o.Status_Cut != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
+            model.SCuts = SCuts.Find(Id);
+            model.WorksPause = new WorksPause();
+            model.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ตัด");
+            model.WorksDenine = new WorksDenine();
+            model.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ตัด");
+            return View(model);
         }
-        public ActionResult IndexSale()
+        public ActionResult IndexSale(string Id)
         {
+            if (Id != null)
+            {
+                List<s_Cut> sacut = SCuts.Collection().Where(o => o.Id == Id).ToList();
+                return View(sacut);
+            }
             List<s_Cut> scut = SCuts.Collection().Where(o => o.C2BNo != null && o.Status_Cut != "เสร็จ" && o.Status_Show == "1").OrderByDescending(o => o.Urgent_Status).ThenBy(x => x.CreateAt).ToList();
             return View(scut);
         }
@@ -112,25 +123,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Pause(string Id)
-        {
-            s_Cut Pause = SCuts.Find(Id);
-            if (Pause == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Pause(string Id)
+        //{
+        //    s_Cut Pause = SCuts.Find(Id);
+        //    if (Pause == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SCuts = new s_Cut();
-                viewModel.WorksPause = new WorksPause();
-                viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ตัด");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SCuts = new s_Cut();
+        //        viewModel.WorksPause = new WorksPause();
+        //        viewModel.WorksPause.Reason_List = ReasonPauses.Collection().OrderBy(o => o.No).Where(o => o.Station == "ตัด");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Pause(string Id, WorksPause wpc, DenineView Pw)
         {
             s_Cut CutPause = SCuts.Find(Id);
@@ -199,25 +210,25 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Denine(string Id)
-        {
-            s_Cut CutDenine = SCuts.Find(Id);
-            if (CutDenine == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                DenineView viewModel = new DenineView();
+        //public ActionResult Denine(string Id)
+        //{
+        //    s_Cut CutDenine = SCuts.Find(Id);
+        //    if (CutDenine == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        DenineView viewModel = new DenineView();
 
-                viewModel.Subc2bs = new Sub_C2B();
-                viewModel.SCuts = new s_Cut();
-                viewModel.WorksDenine = new WorksDenine();
-                viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ตัด");
-                return View(viewModel);
-            }
-        }
-        [HttpPost]
+        //        viewModel.Subc2bs = new Sub_C2B();
+        //        viewModel.SCuts = new s_Cut();
+        //        viewModel.WorksDenine = new WorksDenine();
+        //        viewModel.WorksDenine.Reason_List = ReasonDenines.Collection().OrderBy(o => o.No).Where(o => o.Station == "ตัด");
+        //        return View(viewModel);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Denine(string Id, string lamis, WorksDenine wdc, DenineView dnw)
         {
             s_Cut CutDenine = SCuts.Find(Id);
@@ -272,19 +283,19 @@ namespace RMTracker.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Finish(string Id)
-        {
-            s_Cut cutAccept = SCuts.Find(Id);
-            if (cutAccept == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                return View(cutAccept);
-            }
-        }
-        [HttpPost]
+        //public ActionResult Finish(string Id)
+        //{
+        //    s_Cut cutAccept = SCuts.Find(Id);
+        //    if (cutAccept == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        return View(cutAccept);
+        //    }
+        //}
+        //[HttpPost]
         public ActionResult Finish(s_Cut cut, string Id, string idupdate, string edgeu, string drillu, string paintu, string cleanu, string packu, string qcu, string picku)
         {
             s_Cut cutAccept = SCuts.Find(Id);
@@ -362,7 +373,7 @@ namespace RMTracker.WebUI.Controllers
                 }
                 if (cleanAccept.Status_Cleaning != null)
                 {
-                    if (paintAccept.Status_Painting != null)
+                    if (paintAccept.Status_Painting != null && paintAccept.Status_Painting == "อยู่ในคิว")
                     {
                         cleanAccept.Status_Cleaning = wait5;
                     }
@@ -381,11 +392,11 @@ namespace RMTracker.WebUI.Controllers
                 }
                 if (packAccept.Status_Packing != null)
                 {
-                    if (cleanAccept.Status_Cleaning != null)
+                    if (cleanAccept.Status_Cleaning != null && cleanAccept.Status_Cleaning == "อยู่ในคิว")
                     {
                         packAccept.Status_Packing = wait6;
                     }
-                    else if (paintAccept.Status_Painting != null)
+                    else if (paintAccept.Status_Painting != null && paintAccept.Status_Painting == "อยู่ในคิว")
                     {
                         packAccept.Status_Packing = wait5;
                     }
@@ -404,15 +415,15 @@ namespace RMTracker.WebUI.Controllers
                 }
                 if (qcAccept.Status_QC != null)
                 {
-                    if (packAccept.Status_Packing != null)
+                    if (packAccept.Status_Packing != null && packAccept.Status_Packing == "อยู่ในคิว")
                     {
                         qcAccept.Status_QC = wait7;
                     }
-                    else if (cleanAccept.Status_Cleaning != null)
+                    else if (cleanAccept.Status_Cleaning != null && cleanAccept.Status_Cleaning == "อยู่ในคิว")
                     {
                         qcAccept.Status_QC = wait6;
                     }
-                    else if (paintAccept.Status_Painting != null)
+                    else if (paintAccept.Status_Painting != null && paintAccept.Status_Painting == "อยู่ในคิว")
                     {
                         qcAccept.Status_QC = wait5;
                     }
@@ -431,19 +442,19 @@ namespace RMTracker.WebUI.Controllers
                 }
                 if (pickAccept.Status_Pickup != null)
                 {
-                    if (qcAccept.Status_QC != null)
+                    if (qcAccept.Status_QC != null && qcAccept.Status_QC == "อยู่ในคิว")
                     {
                         pickAccept.Status_Pickup = wait8;
                     }
-                    else if (packAccept.Status_Packing != null)
+                    else if (packAccept.Status_Packing != null && packAccept.Status_Packing == "อยู่ในคิว")
                     {
                         pickAccept.Status_Pickup = wait7;
                     }
-                    else if (cleanAccept.Status_Cleaning != null)
+                    else if (cleanAccept.Status_Cleaning != null && cleanAccept.Status_Cleaning == "อยู่ในคิว")
                     {
                         pickAccept.Status_Pickup = wait6;
                     }
-                    else if (paintAccept.Status_Painting != null)
+                    else if (paintAccept.Status_Painting != null && paintAccept.Status_Painting == "อยู่ในคิว")
                     {
                         pickAccept.Status_Pickup = wait5;
                     }

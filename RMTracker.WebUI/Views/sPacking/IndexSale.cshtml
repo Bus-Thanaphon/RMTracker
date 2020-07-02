@@ -7,7 +7,7 @@
 <h2>งานแพ็ค</h2>
 
 <p>
-    @Html.ActionLink("กลับสู่หน้าหลัก", "Index", "UserWorks")
+    @Html.ActionLink("ย้อนกลับ", null, null, null, new { href = Request.UrlReferrer })
 </p>
 <div class="table-responsive">
     <table class="table">
@@ -69,10 +69,6 @@
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/Process.png")" width="25" height="25">
                     }
-                    @if (item.Status_Packing == "เสร็จ")
-                    {
-                        <img src="@Url.Content("~/Content/Images/StatusImage/Finish.png")" width="25" height="25">
-                    }
                     @if (item.Status_Packing == "ปฏิเสธ" || item.Status_Packing == "ถูกปฏิเสธ")
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/dislike.png")" width="25" height="25">
@@ -80,6 +76,10 @@
                     @if (item.Status_Packing == "รอตรวจสอบ")
                     {
                         <img src="@Url.Content("~/Content/Images/StatusImage/Check.png")" width="25" height="25">
+                    }
+                    @if (item.Status_Packing == "เสร็จ")
+                    {
+                        <img src="@Url.Content("~/Content/Images/StatusImage/2Finish.png")" width="25" height="25">
                     }
                     @if (item.Status_Packing != "อยู่ในคิว" && item.Status_Packing != "หยุด" && item.Status_Packing != "หยุดชั่วคราว"
                         && item.Status_Packing != "กำลังผลิต" && item.Status_Packing != "เสร็จ" && item.Status_Packing != "ปฏิเสธ"
